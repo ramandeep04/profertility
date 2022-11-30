@@ -41,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 children: [
-                  TextField(),
-                  TextField(),
+                  const TextField(),
+                  const TextField(),
                   PrimaryButton(
                     title: "Hello",
                     onPressed: () {},
