@@ -8,6 +8,7 @@ class QuestionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -19,63 +20,73 @@ class QuestionsScreen extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const Text("   Questions About \n Your Present Partner",
+          SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: SizedBox(
+              width: mediaQuery.size.width,
+              height: mediaQuery.size.height,
+              child: SafeArea(
+                  child: Column(
+                children: [
+                  const SizedBox(height: 12.0),
+                  const Text(
+                    "Questions About\nYour Present Partner",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff4d1a53))),
-                const SizedBox(height: 60),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Which sex is your partner?",
-                      style: TextStyle(fontSize: 20, color: Color(0xff1d1d1d))),
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Expanded(
-                        child: GenderSelectionWidget(
-                            isSelected: true, title: "Male")),
-                    SizedBox(width: 24.0),
-                    Expanded(
-                        child: GenderSelectionWidget(
-                            isSelected: false, title: "Female")),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const Align(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff4d1a53),
+                    ),
+                  ),
+                  const SizedBox(height: 60),
+                  const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("How old is your partner",
-                        style:
-                            TextStyle(fontSize: 20, color: Color(0xff1d1d1d)))),
-                const SizedBox(height: 12),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: "Enter input in kg", suffixText: "Kg"),
-                ),
-                const SizedBox(height: 12),
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("How much did you weigh a year ago?",
-                        style:
-                            TextStyle(fontSize: 20, color: Color(0xff1d1d1d)))),
-                const SizedBox(height: 12),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: "Enter input in kg", suffixText: "Kg"),
-                ),
-                const SizedBox(height: 12),
-                const Spacer(),
-                PrimaryButton(title: "Continue", onPressed: (() {})),
-              ],
+                    child: Text("Which sex is your partner?",
+                        style: TextStyle(color: Color(0xff1d1d1d))),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Expanded(
+                          child: GenderSelectionWidget(
+                              isSelected: true, title: "Male")),
+                      SizedBox(width: 24.0),
+                      Expanded(
+                          child: GenderSelectionWidget(
+                              isSelected: false, title: "Female")),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text("How old is your partner",
+                          style: TextStyle(color: Color(0xff1d1d1d)))),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                        hintText: "Enter input in kg", suffixText: "Kg"),
+                  ),
+                  const SizedBox(height: 12),
+                  const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text("How much did you weight a year ago?",
+                          style: TextStyle(color: Color(0xff1d1d1d)))),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                        hintText: "Enter input in kg", suffixText: "Kg"),
+                  ),
+                  const SizedBox(height: 12),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 24.0),
+                    child: PrimaryButton(title: "Continue", onPressed: (() {})),
+                  ),
+                ],
+              )),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -94,10 +105,10 @@ class GenderSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
       decoration: BoxDecoration(
-        color: Color(0xfff7f8fa),
-        borderRadius: BorderRadius.circular(25),
+        color: const Color(0xfff7f8fa),
+        borderRadius: BorderRadius.circular(70),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

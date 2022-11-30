@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:profertility/screens/questions_screen.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class GeneralQuestionsScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class GeneralQuestionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -18,69 +20,85 @@ class GeneralQuestionsScreen extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  const Text(
-                    "General Questions",
-                    style: TextStyle(fontSize: 22, 
-                     fontWeight: FontWeight.bold,
-                    color: Color(0xff4d1a53)),
-                  ),
-                  const SizedBox(height: 60),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "How tall are you?",
-                      style: TextStyle(color: Color(0xff1d1d1d)),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Enter input in cm",
-                      suffixText: "Cm",
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "How much do you weigh today?",
+          SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: SizedBox(
+              width: mediaQuery.size.width,
+              height: mediaQuery.size.height,
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 12.0),
+                    const Text(
+                      "General Questions",
                       style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xff1d1d1d),
-                      ),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff4d1a53)),
                     ),
-                  ),
-                  const SizedBox(height: 14),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Enter input in kg",
-                      suffixText: "Kg",
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
+                    const SizedBox(height: 60),
+                    const Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "How much did you weigh a year ago?",
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xff1d1d1d)),
-                      )),
-                  const SizedBox(height: 14),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                        hintText: "Enter input in kg", suffixText: "Kg"),
-                  ),
-                  const Spacer(),
-                  PrimaryButton(
-                    title: "Continue",
-                    onPressed: () {},
-                  )
-                ],
+                        "How tall are you?",
+                        style: TextStyle(color: Color(0xff1d1d1d)),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: "Enter input in cm",
+                        suffixText: "Cm",
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "How much do you weigh today?",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff1d1d1d),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: "Enter input in kg",
+                        suffixText: "Kg",
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "How much did you weight a year ago?",
+                          style: TextStyle(
+                            color: Color(0xff1d1d1d),
+                          ),
+                        )),
+                    const SizedBox(height: 14),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: "Enter input in kg", suffixText: "Kg"),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: PrimaryButton(
+                        title: "Continue",
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const QuestionsScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
