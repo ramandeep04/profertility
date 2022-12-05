@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/general_questions_screen.dart';
-import 'package:profertility/screens/profile_setup_screen.dart';
+import 'package:profertility/screens/cart_screen.dart';
+import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/signup_screen.dart';
+import 'package:profertility/screens/welcome_profertility_screen.dart';
 import 'screens/questions_screen.dart';
 import 'screens/theme/colors.dart';
 
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const ProfileSetupScreen(),
+      home: const CheckoutScreen(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:profertility/screens/general_questions_screen.dart';
+import 'package:profertility/screens/welcome_profertility_screen.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class ProfileSetupScreen extends StatelessWidget {
@@ -96,7 +96,7 @@ class ProfileSetupScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const GeneralQuestionsScreen(),
+                            builder: (context) => const WelcomeProfertility(),
                           ),
                         );
                       })
