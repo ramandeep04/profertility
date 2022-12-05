@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/cart_screen.dart';
+import 'package:profertility/screens/appointment_created_screen.dart';
+import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/general_questions_screen.dart';
+import 'package:profertility/screens/notification_screen.dart';
+import 'package:profertility/screens/popular_products_screen.dart';
+import 'package:profertility/screens/product_details_screen.dart';
+
+import 'package:profertility/screens/select_gender.dart';
 import 'package:profertility/screens/signup_screen.dart';
+import 'package:profertility/screens/track_order_screen.dart';
+import 'package:profertility/screens/verification_screen.dart';
 import 'package:profertility/screens/welcome_profertility_screen.dart';
 import 'screens/questions_screen.dart';
 import 'screens/theme/colors.dart';
@@ -40,7 +49,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const CheckoutScreen(),
+      home: const NotificationScreen(),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
+import 'package:profertility/screens/widgets/my_appbar.dart';
+import 'package:profertility/screens/widgets/primary_button.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -9,6 +11,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppbar(title: "Checkout"),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -17,31 +20,13 @@ class CheckoutScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset("assets/images/arrow-left.png"),
-                          const SizedBox(width: 12),
-                          const Text(
-                            "Checkout",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xff4d1a53),
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 22),
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Personal Details",
                       style: TextStyle(
-                          color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
+                          color: Color(0xff1d1d1d),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 22),
@@ -95,30 +80,35 @@ class CheckoutScreen extends StatelessWidget {
                       Text(
                         "Delivery Address",
                         style: TextStyle(
-                            color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
+                            color: Color(0xff1d1d1d),
+                            fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "Add New",
                         style: TextStyle(
-                            color: Color(0xff4d1a53), fontWeight: FontWeight.bold),
+                            color: Color(0xff4d1a53),
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   const SizedBox(height: 30),
                   const AddressWidget(
                     location: "Home",
+                    image: "assets/images/round.png",
                     number: "+1 555 086 0012",
                     address: "2630 Wheeler Bridge",
                   ),
                   const SizedBox(height: 12),
                   const AddressWidget(
                     location: "Work",
+                    image: "assets/images/circle.png",
                     number: "+1 555 086 0012",
                     address: "2630 Wheeler Bridge",
                   ),
                   const SizedBox(height: 12),
                   const AddressWidget(
                     location: "Office",
+                    image: "assets/images/circle.png",
                     number: "+1 555 086 0012",
                     address: "2630 Wheeler Bridge",
                   ),
@@ -129,23 +119,36 @@ class CheckoutScreen extends StatelessWidget {
                         color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 30),
-                  const PaymentWidget(
-                    image: "assets/images/debitcard.png",
-                    paymentmethod: "Debit/Credit Card",
-                    mark: "assets/images/round.png",
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                       color: const Color(0xfff7f8fa),
+                    ),
+                   
+                    
+                    child: Column(
+                      children: const [
+                        PaymentWidget(
+                          image: "assets/images/debitcard.png",
+                          paymentmethod: "Debit/Credit Card",
+                          mark: "assets/images/round.png",
+                        ),
+                        
+                        PaymentWidget(
+                          image: "assets/images/netbanking.png",
+                          paymentmethod: "Net Banking",
+                          mark: "assets/images/circle.png",
+                        ),
+                        PaymentWidget(
+                          image: "assets/images/cod.png",
+                          paymentmethod: "Cash On Delivery",
+                          mark: "assets/images/circle.png",
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 12),
-                  const PaymentWidget(
-                    image: "assets/images/netbanking.png",
-                    paymentmethod: "Net Banking",
-                    mark: "assets/images/round.png",
-                  ),
-                   const SizedBox(height: 12),
-                  const PaymentWidget(
-                    image: "assets/images/cod.png",
-                    paymentmethod: "Cash On Delivery",
-                    mark: "assets/images/round.png",
-                  )
+                  const SizedBox(height: 22),
+                  PrimaryButton(title: "Pay Now \$185.00", onPressed: () {})
                 ],
               ),
             ],
@@ -193,11 +196,13 @@ class PaymentWidget extends StatelessWidget {
 
 class AddressWidget extends StatelessWidget {
   final String location;
+  final String image;
   final String number;
   final String address;
   const AddressWidget({
     Key? key,
     required this.location,
+    required this.image,
     required this.number,
     required this.address,
   }) : super(key: key);
@@ -214,7 +219,7 @@ class AddressWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset("assets/images/round.png"),
+              Image.asset(image),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

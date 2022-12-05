@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/cart_screen.dart';
+import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppbar(title: null),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
@@ -18,7 +20,7 @@ class ProductDetailsScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset("assets/images/arrow-left.png"),
+               
                   Container(
                     decoration: const BoxDecoration(),
                     child: Column(
