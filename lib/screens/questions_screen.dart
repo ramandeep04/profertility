@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class QuestionsScreen extends StatelessWidget {
@@ -49,12 +47,18 @@ class QuestionsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Expanded(
-                          child: GenderSelectionWidget(
-                              isSelected: true, title: "Male")),
+                        child: GenderSelectionWidget(
+                          isSelected: true,
+                          title: "Male",
+                        ),
+                      ),
                       SizedBox(width: 24.0),
                       Expanded(
-                          child: GenderSelectionWidget(
-                              isSelected: false, title: "Female")),
+                        child: GenderSelectionWidget(
+                          isSelected: false,
+                          title: "Female",
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -105,24 +109,19 @@ class GenderSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: const Color(0xfff7f8fa),
         borderRadius: BorderRadius.circular(70),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Image.asset(
-              isSelected
-                  ? "assets/images/male.png"
-                  : "assets/images/female.png",
-            ),
-            const SizedBox(width: 16),
-            Text(title),
-          ],
-        ),
+      child: Row(
+        children: [
+          Image.asset(
+            isSelected ? "assets/images/male.png" : "assets/images/female.png",
+          ),
+          const SizedBox(width: 16),
+          Text(title),
+        ],
       ),
     );
   }
