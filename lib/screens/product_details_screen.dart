@@ -11,7 +11,7 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: null),
+      appBar: const MyAppbar(title: null),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
@@ -46,7 +46,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       Icon(Icons.favorite_border),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

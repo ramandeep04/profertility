@@ -7,7 +7,7 @@ class PopularProuctsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: "Popular Products"),
+      appBar: const MyAppbar(title: "Popular Products"),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 24),

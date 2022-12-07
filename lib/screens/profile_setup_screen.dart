@@ -10,7 +10,7 @@ class ProfileSetupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: "Profile Setup"),
+      appBar: const MyAppbar(title: "Profile Setup"),
       body: SafeArea(
           child: ListView(
         padding: const EdgeInsets.all(24),
