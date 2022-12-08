@@ -6,7 +6,6 @@ class WelcomeProfertility extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         backgroundColor: const Color(0xff00afa4),
         body: Stack(
           children: [

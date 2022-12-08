@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
-class MarioScreen extends StatelessWidget {
-  const MarioScreen({super.key});
+class AppointmentDetailsScreen extends StatelessWidget {
+  const AppointmentDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +49,7 @@ class MarioScreen extends StatelessWidget {
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             const Text(
                               "01 hour consultation",
                               style: TextStyle(
@@ -59,7 +57,7 @@ class MarioScreen extends StatelessWidget {
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                                 Image.asset("assets/images/calendar.png"),
@@ -107,7 +105,7 @@ class MarioScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     const Text(
                       "CollenEd5237@gmail.com",
                       style: TextStyle(color: Color(0xff1d1d1d), fontSize: 12),
@@ -158,7 +156,7 @@ class MarioScreen extends StatelessWidget {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            backgroundColor: Color(0xffe8e8e8),
+                            backgroundColor: const Color(0xffe8e8e8),
                             fixedSize: Size(size.width, 56),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(70))),
@@ -207,7 +205,7 @@ class LabTestWidget extends StatelessWidget {
             children: [
               Text(
                 type,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color(0xff1d1d1d), fontWeight: FontWeight.w300),
               ),
               const SizedBox(height: 4),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:profertility/main.dart';
 import 'package:profertility/screens/welcome_profertility_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
@@ -49,12 +48,13 @@ class ProfileSetupScreen extends StatelessWidget {
           TextFormField(
             decoration: InputDecoration(
               hintText: "Date of Birth",
-              prefixIcon: Image.asset("assets/images/Polygon.png"),
+              suffixIcon: Image.asset("assets/images/Polygon.png"),
             ),
           ),
           const SizedBox(height: 16),
           TextFormField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              suffixIcon: Image.asset("assets/images/Polygon.png"),
               hintText: "Sex at birth",
             ),
           ),
@@ -72,7 +72,8 @@ class ProfileSetupScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TextFormField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              suffixIcon: Image.asset("assets/images/Polygon.png"),
               hintText: "Marital Status",
             ),
           ),

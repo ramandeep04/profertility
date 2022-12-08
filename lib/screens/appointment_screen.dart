@@ -20,7 +20,7 @@ class AppointmentScreen extends StatelessWidget {
                 decoration: const BoxDecoration(color: Color(0xfff7f8fa)),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

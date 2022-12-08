@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/CA-125_test_Screen.dart';
+import 'package:profertility/screens/appointment_created_screen.dart';
 import 'package:profertility/screens/appointment_screen.dart';
-import 'package:profertility/screens/mario_screen.dart';
+import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/drmario_screen.dart';
+import 'package:profertility/screens/general_questions_screen.dart';
+import 'package:profertility/screens/appointment_details_screen.dart';
 import 'package:profertility/screens/myappointment_screen.dart';
-import 'package:profertility/screens/test_list_screen.dart';
+import 'package:profertility/screens/questions_screen.dart';
+import 'package:profertility/screens/schedule_screen.dart';
+import 'package:profertility/screens/signup_screen.dart';
+import 'package:profertility/screens/test_detail_screen.dart';
+import 'package:profertility/screens/welcome_profertility_screen.dart';
 
 import 'screens/theme/colors.dart';
 
@@ -24,6 +31,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: ThemeColor.mcgpalette,
         primaryColor: const Color(ThemeColor.primaryColor),
         textTheme: GoogleFonts.comfortaaTextTheme(),
+        tabBarTheme: TabBarTheme(
+          labelStyle: GoogleFonts.comfortaa(),
+          unselectedLabelStyle: GoogleFonts.comfortaa(),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: const Color(0xfff7f8fa),
@@ -41,7 +52,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const CA125TestScreen(),
+      home: const ScheduleScreen(),
     );
   }
 }

@@ -1,59 +1,150 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/cart_screen.dart';
-import 'package:profertility/screens/mario_screen.dart';
+import 'package:profertility/screens/appointment_details_screen.dart';
+import 'package:profertility/screens/notification_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
-class CA125TestScreen extends StatelessWidget {
-  const CA125TestScreen({super.key});
+class TestDetailScreen extends StatelessWidget {
+  const TestDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppbar(title: "#STR7834"),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 226,
-                  width: 336,
-                  decoration: BoxDecoration(),
-                  child: Image.asset("assets/images/125-test.png",
-                      fit: BoxFit.cover),
+                Stack(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 2,
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: Image.asset(
+                          "assets/images/125-test.png",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff18b579),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          "Complete",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 10,
+                      left: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffe63939),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(4.0),
+                              topLeft: Radius.circular(2.0),
+                              topRight: Radius.circular(4.0)),
+                        ),
+                        child: const Text(
+                          "50%OFF",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 32),
-                const Text(
-                  "CA 125-Test",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff272c3f)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "CA 125-Test",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff272c3f)),
+                    ),
+                    Image.asset("assets/images/heart.png"),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "\$35",
-                      style: TextStyle(
-                          fontSize: 20, color: Theme.of(context).primaryColor),
+                    Row(
+                      children: [
+                        Text(
+                          "\$35",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Theme.of(context).primaryColor),
+                        ),
+                        const Text(
+                          " \$35",
+                          style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              color: Color(0xff666666)),
+                        ),
+                      ],
                     ),
-                    const Text(
-                      " \$35",
-                      style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: Color(0xff666666)),
-                    ),
+                    Row(
+                      children: [
+                        Image.asset("assets/images/groupofstar.png"),
+                        const Text(
+                          "4.5",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xff272c3f),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                const Text(
-                  "+ 0.25 Taxes",
-                  style: TextStyle(fontSize: 10, color: Color(0xff666666)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "+ 0.25 Taxes",
+                      style: TextStyle(fontSize: 10, color: Color(0xff666666)),
+                    ),
+                    RichText(
+                      text: const TextSpan(
+                          text: "3,222 DELIVERY ",
+                          style:
+                              TextStyle(fontSize: 10, color: Color(0xff272c3f)),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "REVIEWS",
+                              style: TextStyle(
+                                  fontSize: 10, color: Color(0xff96979c)),
+                            )
+                          ]),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 const Text(
@@ -163,7 +254,7 @@ class CA125TestScreen extends StatelessWidget {
                           leading: "Coupon Discount", trailing: " -\$16.80"),
                       const SummaryWidget(
                           leading: "Shipping", trailing: "Free"),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       const Divider(
                         color: Color(0xff0000000),
                       ),
@@ -189,7 +280,7 @@ class CA125TestScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 const Text(
                   "Payment method",
                   style: TextStyle(
@@ -217,8 +308,16 @@ class CA125TestScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 24),
-                PrimaryButton(title: "Download Report", onPressed: () {})
+                const SizedBox(height: 24),
+                PrimaryButton(
+                    title: "Download Report",
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationScreen(),
+                        ),
+                      );
+                    })
               ],
             ),
           ],
