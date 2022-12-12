@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/cart_screen.dart';
 import 'package:profertility/screens/checkout_screen.dart';
-import 'package:profertility/screens/signup_screen.dart';
-import 'package:profertility/screens/welcome_profertility_screen.dart';
-import 'screens/questions_screen.dart';
+import 'package:profertility/screens/popular_products_screen.dart';
+import 'package:profertility/screens/product_details_screen.dart';
 import 'screens/theme/colors.dart';
 
 void main() {
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const CheckoutScreen(),
+      home: const PopularProductsScreen(),
     );
   }
 }

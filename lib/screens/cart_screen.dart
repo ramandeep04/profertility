@@ -47,8 +47,6 @@ class CartScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               "assets/images/amlodipine.png",
-                              width: 120,
-                              height: 120,
                             ),
                             Column(
                               children: [
@@ -128,11 +126,13 @@ class CartScreen extends StatelessWidget {
                       filled: false,
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color.fromARGB(255, 223, 223, 223)),
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 223, 223, 223)),
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       prefix: const Icon(Icons.edit),
@@ -152,7 +152,7 @@ class CartScreen extends StatelessWidget {
                         color: Color(0xffebfafb),
                       ),
                       child: Wrap(
-                        runSpacing: 24.0,
+                        runSpacing: 16.0,
                         children: [
                           const Text(
                             "Payment Summary",
