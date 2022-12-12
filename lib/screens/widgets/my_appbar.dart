@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final List<Widget>? actions;
-  const MyAppBar({super.key, required this.title, this.actions});
+  const MyAppbar(
+      {super.key, required this.title, this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -11,24 +12,22 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Image.asset("assets/images/arrow-left.png"),
         onPressed: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).maybePop();
         },
+        icon: Image.asset("assets/images/arrow-left.png"),
       ),
       titleSpacing: 0.0,
       centerTitle: false,
-      actions: actions,
+      leadingWidth: 65,
       title: title != null
           ? Text(
               title!,
               style: const TextStyle(
-                fontSize: 18,
-                color: Color(0xff4d1a53),
-                fontWeight: FontWeight.bold,
-              ),
+                  color: Color(0xff4d1a53), fontWeight: FontWeight.w500),
             )
           : null,
+      actions: actions,
     );
   }
 

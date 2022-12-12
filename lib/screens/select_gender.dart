@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/profile_setup_screen.dart';
+import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class SelectGender extends StatelessWidget {
@@ -10,69 +9,71 @@ class SelectGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const MyAppbar(
+        title: null,
+      ),
       body: SafeArea(
-          bottom: false,
-          child: Stack(
-            children: [
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Image.asset("assets/images/image.png"),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset("assets/images/arrow-left.png"),
-                    const SizedBox(height: 60),
-                    const Text(
-                      "Please select your Gender",
-                      style: TextStyle(
-                          color: Color(0xff4d1a53),
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
+        bottom: false,
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset("assets/images/image.png"),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 60),
+                  const Text(
+                    "Please select your Gender",
+                    style: TextStyle(
+                        color: Color(0xff4d1a53),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    "On the basis of the your selection the further Questionnaires will be asked to you.",
+                    style: TextStyle(
+                      color: Color(0xff898989),
                     ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      "On the basis of the your selection the further Questionnaires will be asked to you.",
-                      style: TextStyle(
-                        color: Color(0xff898989),
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    children: const [
+                      Expanded(
+                        child: SelectionWidget(
+                          isSelected: true,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    Row(
-                      children: const [
-                        Expanded(
-                          child: SelectionWidget(
-                            isSelected: true,
-                          ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: SelectionWidget(
+                          isSelected: false,
                         ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: SelectionWidget(
-                            isSelected: false,
-                          ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  PrimaryButton(
+                    title: "Continue",
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: ((context) => const ProfileSetupScreen()),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    PrimaryButton(
-                      title: "Continue",
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => const ProfileSetupScreen()
-                            ),
-                            ),
-                            );
-                      },
-                    ),
-                  ],
-                ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -97,9 +98,7 @@ class SelectionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
-            isSelected 
-             ? "assets/images/boy.png"
-             : "assets/images/girl.png",
+            isSelected ? "assets/images/boy.png" : "assets/images/girl.png",
           ),
           Image.asset(
             isSelected

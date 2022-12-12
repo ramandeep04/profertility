@@ -21,6 +21,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: ThemeColor.mcgpalette,
         primaryColor: const Color(ThemeColor.primaryColor),
         textTheme: GoogleFonts.comfortaaTextTheme(),
+        tabBarTheme: TabBarTheme(
+          labelStyle: GoogleFonts.comfortaa(),
+          unselectedLabelStyle: GoogleFonts.comfortaa(),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: const Color(0xfff7f8fa),

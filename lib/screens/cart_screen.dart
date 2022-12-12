@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(title: "Your Cart"),
+      appBar: const MyAppbar(title: "Your Cart"),
       body: SafeArea(
         child: ListView(
           children: [
