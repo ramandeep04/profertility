@@ -231,21 +231,122 @@ class ProductDetailsScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding:
-                const EdgeInsets.only(bottom: 16, left: 20, right: 20, top: 16),
-            child: PrimaryButton(
-              title: "Add to Cart",
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CartScreen()),
-                );
-              },
+          SafeArea(
+            top: false,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+              child: PrimaryButton(
+                title: "",
+                child: const AddToCartWidget(isInCart: true),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const CartScreen()),
+                  );
+                },
+              ),
             ),
           )
         ],
       ),
     );
+  }
+}
+
+class AddToCartWidget extends StatelessWidget {
+  final bool isInCart;
+  const AddToCartWidget({super.key, required this.isInCart});
+
+  @override
+  Widget build(BuildContext context) {
+    if (isInCart) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 24.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: BoxConstraints.tight(
+                      const Size.square(45),
+                    ),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF4DC7BF),
+                    ),
+                    child: const Icon(
+                      Icons.remove,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10.0),
+                const Text(
+                  "1",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(width: 10.0),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: BoxConstraints.tight(
+                      const Size.square(45),
+                    ),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF4DC7BF),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Text.rich(
+              TextSpan(
+                  text: "\$ 199.00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: [
+                    WidgetSpan(child: SizedBox(width: 8.0)),
+                    TextSpan(
+                      text: "Go to Cart",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        letterSpacing: 0.1,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ]),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return const Text(
+        "Add to Cart",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      );
+    }
   }
 }
 

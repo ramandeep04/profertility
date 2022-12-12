@@ -25,34 +25,13 @@ class CartScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                        hintText: "Apply Coupon",
-                        suffixIcon: Icon(Icons.close),
-                        prefixIcon: Icon(Icons.sell)),
+                  const CartCouponWidget(
+                    coupon: 'Fertility7373',
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  TextField(
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      filled: false,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 223, 223, 223)),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor, width: 2),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      prefix: const Icon(Icons.edit),
-                      hintText: "Add Instructions",
-                    ),
-                  ),
+                  const AddInstructionWidget(),
                   const SizedBox(height: 16),
                   const PaymentSummary(),
                   const SizedBox(height: 22),
@@ -68,6 +47,107 @@ class CartScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CartCouponWidget extends StatelessWidget {
+  final String? coupon;
+  const CartCouponWidget({
+    Key? key,
+    required this.coupon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: const Color(0xfff7f8fa),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            "assets/images/tag.png",
+          ),
+          const SizedBox(width: 16.0),
+          if (coupon == null)
+            const Expanded(
+              child: Text(
+                "Apply Coupon",
+                style: TextStyle(
+                  color: Color(0xff666666),
+                  fontSize: 16.0,
+                ),
+              ),
+            )
+          else
+            Expanded(
+              child: Text.rich(
+                TextSpan(
+                  text: "$coupon",
+                  style: const TextStyle(
+                    color: Color(0xff4d1a53),
+                    fontSize: 16.0,
+                  ),
+                  children: [
+                    const WidgetSpan(
+                      child: SizedBox(width: 8.0),
+                    ),
+                    TextSpan(
+                      text: "Coupon Applied",
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 14.0,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          InkWell(
+            onTap: () {},
+            child: Image.asset("assets/images/cancel.png"),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AddInstructionWidget extends StatelessWidget {
+  const AddInstructionWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xffececec)),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset("assets/images/edit.png"),
+          const SizedBox(width: 16.0),
+          const Expanded(
+            child: TextField(
+              maxLines: 4,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.zero,
+                filled: true,
+                fillColor: Colors.white,
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                hintText: "Add Instructions",
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -265,7 +345,7 @@ class _CartItemState extends State<CartItem> {
                           child: Container(
                             alignment: Alignment.center,
                             constraints: BoxConstraints.tight(
-                             widget.buttonSize ?? const Size.square(35),
+                              widget.buttonSize ?? const Size.square(35),
                             ),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,

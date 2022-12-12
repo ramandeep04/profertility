@@ -93,82 +93,153 @@ class PopularProductsScreen extends StatelessWidget {
       ),
       context: context,
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+        return FilterBottomSheet();
+      },
+    );
+  }
+}
+
+class FilterBottomSheet extends StatefulWidget {
+  const FilterBottomSheet({super.key});
+
+  @override
+  State<FilterBottomSheet> createState() => _FilterBottomSheetState();
+}
+
+class _FilterBottomSheetState extends State<FilterBottomSheet>
+    with SingleTickerProviderStateMixin {
+  late PageController controller;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(initialPage: 0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 16.0),
+            Container(
+              width: 50,
+              height: 4,
+              decoration: BoxDecoration(
+                color: const Color(0xffe5e5e5),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+            ),
+            const SizedBox(height: 24.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(height: 16.0),
-                Container(
-                  width: 50,
-                  height: 6,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffe5e5e5),
-                    borderRadius: BorderRadius.circular(16.0),
+                FilterItem(
+                  filter: "Filter",
+                  isSelected: selectedIndex == 0,
+                  onClick: () {
+                    setState(() {
+                      selectedIndex = 0;
+                    });
+                    controller.animateToPage(0,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeInOut);
+                  },
+                ),
+                FilterItem(
+                  filter: "Sort",
+                  isSelected: selectedIndex == 1,
+                  onClick: () {
+                    setState(() {
+                      selectedIndex = 1;
+                    });
+                    controller.animateToPage(1,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeInOut);
+                  },
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    "Reset",
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
-                const SizedBox(height: 24.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (index) {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
+                  children: const [
+                    FilterSheet(),
+                    SortingFilter(),
+                  ],
+                ),
+              ),
+            ),
+            PrimaryButton(
+              title: "Apply filters",
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FilterItem extends StatelessWidget {
+  final String filter;
+  final bool isSelected;
+  final VoidCallback onClick;
+  const FilterItem({
+    Key? key,
+    required this.filter,
+    required this.isSelected,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onClick,
+      child: Text.rich(
+        TextSpan(
+          text: filter,
+          style: const TextStyle(fontSize: 20.0),
+          children: [
+            if (isSelected)
+              WidgetSpan(
+                alignment: PlaceholderAlignment.top,
+                child: Row(
                   children: [
-                    filterSelection(context, "Filter", false),
-                    filterSelection(context, "Sort", true),
-                    Text(
-                      "Reset",
-                      style: TextStyle(
-                        fontSize: 16.0,
+                    const SizedBox(width: 4.0),
+                    Container(
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ],
                 ),
-                const Divider(
-                  height: 24.0,
-                ),
-                const SizedBox(height: 16.0),
-                const AnimatedSwitcher(
-                  duration: Duration(milliseconds: 200),
-                  child: SortingFilter(),
-                ),
-                const SizedBox(height: 24.0),
-                PrimaryButton(
-                  title: "Apply filters",
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 16.0),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget filterSelection(BuildContext context, String filter, bool isSelected) {
-    return Text.rich(
-      TextSpan(
-        text: filter,
-        style: const TextStyle(fontSize: 16.0),
-        children: [
-          if (isSelected)
-            WidgetSpan(
-              alignment: PlaceholderAlignment.top,
-              child: Row(
-                children: [
-                  const SizedBox(width: 4.0),
-                  Container(
-                    width: 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ],
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -253,7 +324,6 @@ class _FilterSheetState extends State<FilterSheet> {
             onChanged: (v) {},
           ),
         ),
-        const SizedBox(height: 16.0),
       ],
     );
   }
@@ -377,13 +447,15 @@ class ProductItem extends StatelessWidget {
                             text: TextSpan(
                               children: <InlineSpan>[
                                 WidgetSpan(
-                                  alignment: PlaceholderAlignment.bottom,
+                                  alignment: PlaceholderAlignment.top,
                                   child: Image.asset("assets/images/star.png"),
                                 ),
+                                const WidgetSpan(child: SizedBox(width: 2.0)),
                                 TextSpan(
                                   text: "4.6",
                                   style: GoogleFonts.comfortaa().copyWith(
                                     color: const Color(0xff898989),
+                                    fontSize: 13,
                                   ),
                                 ),
                               ],
