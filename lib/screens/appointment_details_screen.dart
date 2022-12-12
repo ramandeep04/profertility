@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -15,66 +16,19 @@ class AppointmentDetailsScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(color: Color(0xfff7f8fa)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Doctor Details",
-                      style: TextStyle(
-                          color: Color(0xff1d1d1d),
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset("assets/images/dr.mario.png"),
-                        Column(
-                          children: [
-                            const Text(
-                              "Dr. Mario Arsenio",
-                              style: TextStyle(
-                                  color: Color(0xff1d1d1d),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "Radiology Specialist",
-                              style: TextStyle(
-                                  color: Color(0xff666666),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              "01 hour consultation",
-                              style: TextStyle(
-                                  color: Color(0xff4d1a53),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                Image.asset("assets/images/calendar.png"),
-                                const Text(
-                                  "Tonight at 6:30 PM",
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                Image.asset("assets/images/user.png"),
-                                const Text("1"),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  DoctorWidget(
+                    name: "Dr. Mario Arsenio",
+                    image: "assets/images/dr.mario.png",
+                    specializedIn: "Radiology Specialist",
+                    consultationTime: "01 hour consultation",
+                    schedule: "Tonight at 6:30 PM",
+                    persons: 1,
+                    isChatAvailable: true,
+                  ),
+                ],
               ),
               const SizedBox(height: 25),
               Padding(

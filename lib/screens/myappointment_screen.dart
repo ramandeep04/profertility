@@ -142,7 +142,7 @@ class AppointmentsWidget extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           color: Color(0xff1d1d1d),
                           fontWeight: FontWeight.bold),

@@ -80,7 +80,7 @@ class TestDetailScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "CA 125-Test",
                       style: TextStyle(
                           fontSize: 20,

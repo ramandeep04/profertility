@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:profertility/screens/appointment_created_screen.dart';
 import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -16,63 +18,15 @@ class AppointmentScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: const BoxDecoration(color: Color(0xfff7f8fa)),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Doctor Details",
-                        style: TextStyle(
-                            color: Color(0xff1d1d1d),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 22),
-                      Row(
-                        children: [
-                          Image.asset("assets/images/dr.mario.png"),
-                          const SizedBox(width: 12),
-                          Column(
-                            children: const [
-                              Text(
-                                "Dr. Mario Arsenio",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Color(0xff1d1d1d),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                "Radiology Specialist",
-                                style: TextStyle(
-                                  color: Color(0xff666666),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 11),
-                              Text(
-                                "01 hour consultation",
-                                style: TextStyle(
-                                    color: Color(0xff4d1a53),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+              const DoctorWidget(
+                name: "Dr. Mario Arsenio",
+                image: "assets/images/dr.mario.png",
+                specializedIn: "Radiology Specialist",
+                consultationTime: "01 hour consultation",
               ),
-              const SizedBox(height: 20),
+              const Gap(20.0),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -87,12 +41,12 @@ class AppointmentScreen extends StatelessWidget {
                             style: TextStyle(color: Color(0xff19144b)))
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const Gap(14.0),
                     const Text(
                       "Consultation fee for 01 hour",
                       style: TextStyle(color: Color(0xff62606d)),
                     ),
-                    const SizedBox(height: 20),
+                    const Gap(20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -106,7 +60,7 @@ class AppointmentScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const Gap(20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -120,34 +74,39 @@ class AppointmentScreen extends StatelessWidget {
                             )),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const Gap(20),
                     const Divider(
                       color: Color(0xff807d98),
                     ),
                     const SizedBox(height: 16),
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
                           color: const Color(0xfff7f8fa),
                           borderRadius: BorderRadius.circular(40)),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset("assets/images/tag.png"),
-                          const Text(
-                            "Fertility7323",
-                            style: TextStyle(
-                              color: Color(0xff4d1a53),
-                              fontWeight: FontWeight.w200,
-                            ),
-                          ),
-                          const Text(
-                            "Coupon Applied",
-                            style: TextStyle(
-                                color: Color(0xff00afa4),
-                                fontSize: 10,
-                                fontWeight: FontWeight.w200),
+                          Row(
+                            children: [
+                              Image.asset("assets/images/tag.png"),
+                              Gap(12),
+                              const Text(
+                                "Fertility7323 ",
+                                style: TextStyle(
+                                  color: Color(0xff4d1a53),
+                                  fontWeight: FontWeight.w200,
+                                ),
+                              ),
+                              const Text(
+                                "Coupon Applied",
+                                style: TextStyle(
+                                    color: Color(0xff00afa4),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w200),
+                              ),
+                            ],
                           ),
                           Image.asset("assets/images/close.png")
                         ],
@@ -156,37 +115,46 @@ class AppointmentScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 22),
-              const Text(
-                "Payment Method",
-                style: TextStyle(
-                    color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 22),
-              const PaymentWidget(
-                image: "assets/images/debitcard.png",
-                paymentmethod: "Debit/Credit Card",
-                mark: "assets/images/round.png",
-              ),
-              const PaymentWidget(
-                image: "assets/images/netbanking.png",
-                paymentmethod: "Net Banking",
-                mark: "assets/images/circle.png",
-              ),
-              const PaymentWidget(
-                image: "assets/images/cod.png",
-                paymentmethod: "Cash On Delivery",
-                mark: "assets/images/circle.png",
-              ),
-              const SizedBox(height: 26),
+              const Gap(22),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: PrimaryButton(
-                    title: "Continue",
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AppointmentCreatedScreen()));
-                    }),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Payment Method",
+                      style: TextStyle(
+                          color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
+                    ),
+                    const Gap(22),
+                    const PaymentWidget(
+                      image: "assets/images/debitcard.png",
+                      paymentmethod: "Debit/Credit Card",
+                      mark: "assets/images/round.png",
+                    ),
+                    const PaymentWidget(
+                      image: "assets/images/netbanking.png",
+                      paymentmethod: "Net Banking",
+                      mark: "assets/images/circle.png",
+                    ),
+                    const PaymentWidget(
+                      image: "assets/images/cod.png",
+                      paymentmethod: "Cash On Delivery",
+                      mark: "assets/images/circle.png",
+                    ),
+                    const Gap(26),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: PrimaryButton(
+                          title: "Continue",
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const AppointmentCreatedScreen()));
+                          }),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
