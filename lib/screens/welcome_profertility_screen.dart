@@ -8,8 +8,16 @@ class WelcomeProfertility extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color(0xff00afa4),
         body: Stack(
+          fit: StackFit.expand,
           children: [
-            Image.asset("assets/images/wcbackg.png"),
+            Positioned(
+              bottom: 0,
+              top: 0,
+              child: Image.asset(
+                "assets/images/wcbackg.png",
+                fit: BoxFit.contain,
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

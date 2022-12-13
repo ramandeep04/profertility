@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:profertility/screens/add_new_address_screen.dart';
 import 'package:profertility/screens/drmario_screen.dart';
+import 'package:profertility/screens/filter_screen.dart';
 import 'package:profertility/screens/myappointment_screen.dart';
 import 'package:profertility/screens/onboarding_screen.dart';
 import 'package:profertility/screens/popular_products_screen.dart';
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const TestSortScreen(),
+      home: const SplashScreen(),
     );
   }
 }
