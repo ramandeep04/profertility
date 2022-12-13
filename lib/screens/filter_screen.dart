@@ -13,7 +13,7 @@ class FilterScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(22),
+              padding: const EdgeInsets.all(22),
               decoration: const BoxDecoration(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

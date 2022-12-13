@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
