@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:profertility/screens/general_questions_screen.dart';
 
-class WelcomeProfertility extends StatelessWidget {
+class WelcomeProfertility extends StatefulWidget {
   const WelcomeProfertility({super.key});
+
+  @override
+  State<WelcomeProfertility> createState() => _WelcomeProfertilityState();
+}
+
+class _WelcomeProfertilityState extends State<WelcomeProfertility> {
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const GeneralQuestionsScreen(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

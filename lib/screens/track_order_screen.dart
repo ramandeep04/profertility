@@ -10,15 +10,20 @@ class TrackOrderScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color(0xff00afa4),
         body: Stack(
+          fit: StackFit.expand,
           children: [
-            Image.asset("assets/images/wcbackg.png", fit: BoxFit.cover),
+            Positioned(
+              child:
+                  Image.asset("assets/images/wcbackg.png", fit: BoxFit.cover),
+            ),
             SafeArea(
               bottom: false,
               child: Column(
                 children: [
                   SizedBox.fromSize(size: const Size.fromHeight(90)),
-                  Image.asset("assets/images/welcometick.png",
-                ),
+                  Image.asset(
+                    "assets/images/welcometick.png",
+                  ),
                   const SizedBox(height: 12),
                   const Text(
                     "Thank you for Ordering.\n   We are on our way.",
@@ -43,7 +48,9 @@ class TrackOrderScreen extends StatelessWidget {
                         child: const Text("Track Order",
                             style: TextStyle(
                               color: Color(0xff00afa4),
-                            ))),
+                            ),
+                            ),
+                            ),
                   ),
                 ],
               ),
