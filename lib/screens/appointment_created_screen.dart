@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:profertility/screens/test_list_screen.dart';
 
-class AppointmentCreatedScreen extends StatelessWidget {
+class AppointmentCreatedScreen extends StatefulWidget {
   const AppointmentCreatedScreen({super.key});
+
+  @override
+  State<AppointmentCreatedScreen> createState() =>
+      _AppointmentCreatedScreenState();
+}
+
+class _AppointmentCreatedScreenState extends State<AppointmentCreatedScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const TestListScreen(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff00afa4),
-        body: Stack(
-          
-          children: [
-            SizedBox.expand(
-              child: Image.asset("assets/images/wcbackg.png"),
+      backgroundColor: const Color(0xff00afa4),
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: Image.asset(
+              "assets/images/wcbackg.png",
+              fit: BoxFit.cover,
             ),
-            Column(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
@@ -21,7 +44,7 @@ class AppointmentCreatedScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 const Text(
-                  "Your Appointment has\n been created",
+                  "Your Appointment has been created",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
@@ -30,15 +53,18 @@ class AppointmentCreatedScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  
-                  "Your appointment with Dr.Maria Schedule in\nmask was made on Wednesday, March 22\nat 16:00 pm",
+                  "Your appointment with Dr.Maria Schedule in mask was made on Wednesday, March 22 at 16:00 pm",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xffffffff),
-                  fontSize: 12),
+                  style: TextStyle(
+                    color: Color(0xffffffff),
+                    fontSize: 14,
+                  ),
                 )
               ],
-            )
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

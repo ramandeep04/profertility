@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/home_screen.dart';
+import 'package:profertility/screens/myappointment_screen.dart';
+import 'package:profertility/screens/nearby_doctor_screen.dart';
 import 'package:profertility/screens/popular_products_screen.dart';
 import 'package:profertility/screens/product_details_screen.dart';
+import 'package:profertility/screens/select_gender.dart';
 import 'screens/theme/colors.dart';
 
 void main() {
@@ -42,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const PopularProductsScreen(),
+      home: const SelectGender(),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:profertility/screens/appointment_details_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 
 class MyAppointmentscreen extends StatefulWidget {
@@ -31,8 +33,8 @@ class _MyAppointmentscreenState extends State<MyAppointmentscreen>
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16.0),
-            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
               color: const Color(0xfff7f8fa),
               borderRadius: BorderRadius.circular(30.0),
@@ -57,46 +59,63 @@ class _MyAppointmentscreenState extends State<MyAppointmentscreen>
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: RichText(
+                text: TextSpan(
+                  text: "Showing ",
+                  style: GoogleFonts.comfortaa().copyWith(
+                    color: const Color(0xff9d9d9d),
+                    fontSize: 12.0,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "All Appointments",
+                      style: GoogleFonts.comfortaa().copyWith(
+                        color: const Color(0xff1d1d1d),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.0,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: const TextSpan(
-                            text: "Showing ",
-                            style: TextStyle(color: Color(0xff9d9d9d)),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: "All Appointments",
-                                  style: TextStyle(
-                                      color: Color(0xff1d1d1d),
-                                      fontWeight: FontWeight.w500)),
-                            ]),
-                      ),
-                      const SizedBox(height: 14),
-                      const AppointmentsWidget(
-                        image: "assets/images/dr.mario.png",
-                        name: "Dr. Mario Arsenio",
-                      ),
-                      const SizedBox(height: 14),
-                      const AppointmentsWidget(
-                        image: "assets/images/Doctor.png",
-                        name: "Dr. Mario Arsenio",
-                      ),
-                    ],
-                  ),
+                ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 6.0),
+                  itemBuilder: (BuildContext context, int index) {
+                    return const AppointmentsWidget(
+                      image: "assets/images/dr.mario.png",
+                      name: "Dr. Mario Arsenio",
+                    );
+                  },
+                  itemCount: 2,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Gap(16.0);
+                  },
                 ),
-                Column(
-                  children: const [
-                    Text("data"),
-                  ],
-                )
+                ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 6.0),
+                  itemBuilder: (BuildContext context, int index) {
+                    return const AppointmentsWidget(
+                      image: "assets/images/dr.mario.png",
+                      name: "Dr. Mario Arsenio",
+                    );
+                  },
+                  itemCount: 3,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Gap(16.0);
+                  },
+                ),
               ],
             ),
           ),
@@ -117,84 +136,97 @@ class AppointmentsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(6.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[200]!,
-              blurRadius: 5,
-              spreadRadius: 2,
-              offset: const Offset(0.0, 2.0),
-            )
-          ]),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Image.asset(image),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: const TextStyle(
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const AppointmentDetailsScreen(),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[200]!,
+                blurRadius: 5,
+                spreadRadius: 2,
+                offset: const Offset(0.0, 2.0),
+              )
+            ]),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 25,
+                  backgroundImage: AssetImage(image),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Color(0xff1d1d1d),
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Fertility Specialist",
-                          style: TextStyle(color: Color(0xff666666)),
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          "#28684",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff4d1a53)),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Fertility Specialist",
+                            style: TextStyle(color: Color(0xff666666)),
+                          ),
+                          Text(
+                            "#28684",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff4d1a53)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const Divider(height: 26.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Image.asset("assets/images/calendar.png"),
+                    const SizedBox(width: 4.0),
+                    const Text("Tonight at 6:30 PM"),
+                    const SizedBox(width: 12.0),
+                    Image.asset("assets/images/user.png"),
+                    const SizedBox(width: 4.0),
+                    const Text("1"),
                   ],
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 18),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Image.asset("assets/images/calendar.png"),
-                  const SizedBox(width: 4.0),
-                  const Text("Tonight at 6:30 PM"),
-                  const SizedBox(width: 12.0),
-                  Image.asset("assets/images/user.png"),
-                  const SizedBox(width: 4.0),
-                  const Text("1"),
-                ],
-              ),
-              Text(
-                "\$124",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                    color: Theme.of(context).primaryColor),
-              ),
-            ],
-          )
-        ],
+                Text(
+                  "\$124",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Theme.of(context).primaryColor),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:profertility/config/config.dart';
 import 'package:profertility/screens/appointment_created_screen.dart';
+import 'package:profertility/screens/cart_screen.dart';
 import 'package:profertility/screens/checkout_screen.dart';
 import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
@@ -12,7 +14,7 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const MyAppbar(title: "Appointment"),
+      appBar: const MyAppbar(title: "Appointment"),
       body: ListView(
         children: [
           Column(
@@ -79,39 +81,9 @@ class AppointmentScreen extends StatelessWidget {
                       color: Color(0xff807d98),
                     ),
                     const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
-                      decoration: BoxDecoration(
-                          color: const Color(0xfff7f8fa),
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset("assets/images/tag.png"),
-                              Gap(12),
-                              const Text(
-                                "Fertility7323 ",
-                                style: TextStyle(
-                                  color: Color(0xff4d1a53),
-                                  fontWeight: FontWeight.w200,
-                                ),
-                              ),
-                              const Text(
-                                "Coupon Applied",
-                                style: TextStyle(
-                                    color: Color(0xff00afa4),
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w200),
-                              ),
-                            ],
-                          ),
-                          Image.asset("assets/images/close.png")
-                        ],
-                      ),
-                    ),
+                    const CartCouponWidget(
+                      coupon: "Feritility7323",
+                    )
                   ],
                 ),
               ),
@@ -124,24 +96,11 @@ class AppointmentScreen extends StatelessWidget {
                     const Text(
                       "Payment Method",
                       style: TextStyle(
-                          color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
+                          color: Color(0xff1d1d1d),
+                          fontWeight: FontWeight.bold),
                     ),
                     const Gap(22),
-                    const PaymentWidget(
-                      image: "assets/images/debitcard.png",
-                      paymentmethod: "Debit/Credit Card",
-                      mark: "assets/images/round.png",
-                    ),
-                    const PaymentWidget(
-                      image: "assets/images/netbanking.png",
-                      paymentmethod: "Net Banking",
-                      mark: "assets/images/circle.png",
-                    ),
-                    const PaymentWidget(
-                      image: "assets/images/cod.png",
-                      paymentmethod: "Cash On Delivery",
-                      mark: "assets/images/circle.png",
-                    ),
+                    const SelectPaymentWidget(),
                     const Gap(26),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -159,6 +118,42 @@ class AppointmentScreen extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SelectPaymentWidget extends StatefulWidget {
+  const SelectPaymentWidget({super.key});
+
+  @override
+  State<SelectPaymentWidget> createState() => _SelectPaymentWidgetState();
+}
+
+class _SelectPaymentWidgetState extends State<SelectPaymentWidget> {
+  int selectedPaymentMethod = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Column(
+        children: List.generate(
+          Config.paymentOptions.length,
+          (index) {
+            final paymentOption = Config.paymentOptions[index];
+            return PaymentWidget(
+              onClick: () {
+                setState(() {
+                  selectedPaymentMethod = index;
+                });
+              },
+              image: paymentOption["image"]!,
+              isSelected: selectedPaymentMethod == index,
+              paymentmethod: paymentOption["title"]!,
+            );
+          },
+        ),
       ),
     );
   }

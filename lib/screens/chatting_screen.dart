@@ -8,22 +8,19 @@ class ChattingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: const MyAppbar(title: "Dr. Mario Arsenio"),
-        body: Column(
-          children: [
-            ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                return ChatWidget(
-                  isSender: index % 2 == 0 ? true : false,
-                  message: "Hello Doctor!",
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const Gap(16.0);
-              },
-              itemCount: 8,
-            ),
-          ],
+        appBar: const MyAppbar(title: "Dr. Mario Arsenio"),
+        body: ListView.separated(
+          reverse: true,
+          itemBuilder: (BuildContext context, int index) {
+            return ChatWidget(
+              isSender: index % 2 == 0 ? true : false,
+              message: "Hello Doctor!",
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const Gap(16.0);
+          },
+          itemCount: 8,
         ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profertility/screens/checkout_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -39,7 +40,13 @@ class CartScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 24),
                     child: PrimaryButton(
                       title: "Proceed to Checkout",
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const CheckoutScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -100,7 +107,7 @@ class CartCouponWidget extends StatelessWidget {
                       text: "Coupon Applied",
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 14.0,
+                        fontSize: 13.0,
                       ),
                     )
                   ],
@@ -118,7 +125,8 @@ class CartCouponWidget extends StatelessWidget {
 }
 
 class AddInstructionWidget extends StatelessWidget {
-  const AddInstructionWidget({super.key});
+  final String? hint;
+  const AddInstructionWidget({super.key, this.hint});
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +141,7 @@ class AddInstructionWidget extends StatelessWidget {
         children: [
           Image.asset("assets/images/edit.png"),
           const SizedBox(width: 16.0),
-          const Expanded(
+          Expanded(
             child: TextField(
               maxLines: 4,
               decoration: InputDecoration(
@@ -143,7 +151,7 @@ class AddInstructionWidget extends StatelessWidget {
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
-                hintText: "Add Instructions",
+                hintText: hint ?? "Add Instructions",
               ),
             ),
           )

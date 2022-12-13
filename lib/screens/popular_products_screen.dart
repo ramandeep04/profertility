@@ -93,7 +93,7 @@ class PopularProductsScreen extends StatelessWidget {
       ),
       context: context,
       builder: (context) {
-        return FilterBottomSheet();
+        return const FilterBottomSheet();
       },
     );
   }
@@ -192,7 +192,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet>
             ),
             PrimaryButton(
               title: "Apply filters",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ],
         ),
@@ -214,12 +216,12 @@ class FilterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onClick,
+    return TextButton(
+      onPressed: onClick,
       child: Text.rich(
         TextSpan(
           text: filter,
-          style: const TextStyle(fontSize: 20.0),
+          style: const TextStyle(fontSize: 20.0, color: Colors.black),
           children: [
             if (isSelected)
               WidgetSpan(
@@ -342,7 +344,7 @@ class _SortingFilterState extends State<SortingFilter> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      runSpacing: 16.0,
+      runSpacing: 24.0,
       children: List.generate(
         Config.sortingFilters.length,
         (index) {
@@ -427,7 +429,7 @@ class ProductItem extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

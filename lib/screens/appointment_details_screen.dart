@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
-import 'package:profertility/screens/widgets/primary_button.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
   const AppointmentDetailsScreen({super.key});
@@ -10,7 +10,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: const MyAppbar(title: "# 28684"),
+      appBar: const MyAppbar(title: "# 28684"),
       body: ListView(
         children: [
           Column(
@@ -32,15 +32,17 @@ class AppointmentDetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
                       "Patient Details",
                       style: TextStyle(
-                          color: Color(0xff1d1d1d),
-                          fontWeight: FontWeight.bold),
+                        color: Color(0xff1d1d1d),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -49,34 +51,34 @@ class AppointmentDetailsScreen extends StatelessWidget {
                           "Edward Collen ",
                           style: TextStyle(
                             color: Color(0xff4d1a53),
-                            fontSize: 12,
                           ),
                         ),
                         Text(
                           " 2233 3843 009",
-                          style:
-                              TextStyle(fontSize: 12, color: Color(0xff4d1a53)),
+                          style: TextStyle(
+                            color: Color(0xff4d1a53),
+                          ),
                         )
                       ],
                     ),
                     const SizedBox(height: 12),
                     const Text(
                       "CollenEd5237@gmail.com",
-                      style: TextStyle(color: Color(0xff1d1d1d), fontSize: 12),
+                      style: TextStyle(
+                        color: Color(0xff1d1d1d),
+                      ),
                     ),
                     const SizedBox(height: 12),
                     const Text(
                       "Sector 44 C",
                       style: TextStyle(
                         color: Color(0xff1d1d1d),
-                        fontSize: 12,
                       ),
                     ),
                     const SizedBox(height: 12),
                     const Text(
                       "856 Spinka Inlet Apt. 576 US",
                       style: TextStyle(
-                        fontSize: 12,
                         color: Color(0xff1d1d1d),
                       ),
                     ),
@@ -89,8 +91,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
                     const Text(
                       "Lab Tests",
                       style: TextStyle(
-                          color: Color(0xff1d1d1d),
-                          fontWeight: FontWeight.bold),
+                        color: Color(0xff1d1d1d),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 22),
                     const LabTestWidget(
@@ -106,19 +110,24 @@ class AppointmentDetailsScreen extends StatelessWidget {
                       type: "CA 125 -Test",
                       amount: "\$35",
                     ),
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 24),
                     ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: const Color(0xffe8e8e8),
-                            fixedSize: Size(size.width, 56),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(70))),
-                        onPressed: (() {}),
-                        child: const Text(
-                          "1 Hr 30 Mins are left",
-                          style: TextStyle(color: Color(0xff898989)),
-                        ))
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color(0xffe8e8e8),
+                        fixedSize: Size(size.width, 56),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(70),
+                        ),
+                      ),
+                      onPressed: (() {}),
+                      child: const Text(
+                        "1 Hr 30 Mins are left",
+                        style: TextStyle(
+                          color: Color(0xff898989),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               )
@@ -153,14 +162,30 @@ class LabTestWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(image),
-          Text(number),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.asset(
+              image,
+              width: 80,
+              height: 60,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text(
+            number,
+            style: const TextStyle(
+              fontSize: 16.0,
+              color: Color(0xff1d1d1d),
+            ),
+          ),
           Column(
             children: [
               Text(
                 type,
                 style: const TextStyle(
-                    color: Color(0xff1d1d1d), fontWeight: FontWeight.w300),
+                  fontSize: 16.0,
+                  color: Color(0xff1d1d1d),
+                ),
               ),
               const SizedBox(height: 4),
               Row(
@@ -168,15 +193,20 @@ class LabTestWidget extends StatelessWidget {
                   Text(
                     amount,
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold),
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
                   ),
+                  const Gap(4.0),
                   const Text(
                     " \$76",
                     style: TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                        fontWeight: FontWeight.w300,
-                        color: Color(0xff898989)),
+                      decoration: TextDecoration.lineThrough,
+                      fontWeight: FontWeight.w300,
+                      color: Color(0xff898989),
+                      fontSize: 14.0,
+                    ),
                   ),
                 ],
               )

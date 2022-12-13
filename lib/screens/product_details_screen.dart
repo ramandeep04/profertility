@@ -151,7 +151,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         "Lorem Ipsum is simply dummy text of the printing & typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
                         style: TextStyle(
                           color: Color(0xff666666),
-                          fontSize: 12,
+                          height: 1.3,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -200,8 +200,6 @@ class ProductDetailsScreen extends StatelessWidget {
                             child: const Text(
                               "See All",
                               style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
                                 color: Color(0xff00afa4),
                               ),
                             ),

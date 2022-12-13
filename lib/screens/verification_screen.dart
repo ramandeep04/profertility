@@ -16,8 +16,10 @@ class VerificationScreen extends StatelessWidget {
           Positioned(
             right: 0,
             left: 100,
-            child: Image.asset("assets/images/backgroundimage.png",
-                fit: BoxFit.fill),
+            child: Image.asset(
+              "assets/images/backgroundimage.png",
+              fit: BoxFit.fill,
+            ),
           ),
           SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
