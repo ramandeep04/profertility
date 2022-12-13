@@ -91,7 +91,7 @@ class AppointmentScreen extends StatelessWidget {
                           Row(
                             children: [
                               Image.asset("assets/images/tag.png"),
-                              Gap(12),
+                              const Gap(12),
                               const Text(
                                 "Fertility7323 ",
                                 style: TextStyle(

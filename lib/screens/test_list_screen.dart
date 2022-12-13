@@ -112,7 +112,20 @@ class _TestListScreenState extends State<TestListScreen>
                 ],
               ),
               Column(
-                children: const [Text("data")],
+                children: [
+                  RichText(
+                      text: const TextSpan(
+                          text: "Showing ",
+                          style: TextStyle(color: Color(0xff9d9d9d)),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: "All Tests",
+                                style: TextStyle(
+                                    color: Color(0xff1d1d1d),
+                                    fontWeight: FontWeight.w500))
+                          ]),
+                    ),
+                ]
               ),
             ]),
           )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
+import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -18,139 +19,163 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppbar(title: "Schedule"),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
-          const DoctorWidget(
-            name: "Dr.Mario Arsenio",
-            specializedIn: "Radiology Specialist",
-            image: "assets/images/dr.mario.png",
-          ),
-          const Gap(14),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Schedule Service",
-                  style: TextStyle(
-                      color: Color(0xff1d1d1d), fontWeight: FontWeight.bold),
-                ),
-                const Gap(18),
-                Row(
-                  children: const [
-                    Text(
-                      "Select Person",
-                      style: TextStyle(
-                          color: Color(0xff666666),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Gap(16.0),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-                const Gap(16),
-                Row(
-                  children: const [
-                    SelectPersonWidget(
-                      isSelected: true,
-                    ),
-                    Gap(6),
-                    SelectPersonWidget(
-                      isSelected: false,
-                    ),
-                  ],
-                ),
-                const Gap(22),
-                Row(
-                  children: const [
-                    Text(
-                      "Select Dates",
-                      style: TextStyle(
-                          color: Color(0xff666666),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Gap(16.0),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-              ],
-            ),
-          ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "May",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                  ),
+              const DoctorWidget(
+                name: "Dr.Mario Arsenio",
+                specializedIn: "Radiology Specialist",
+                image: "assets/images/dr.mario.png",
+              ),
+              const Gap(14),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Schedule Service",
+                      style: TextStyle(
+                          color: Color(0xff1d1d1d),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Gap(18),
+                    Row(
+                      children: const [
+                        Text(
+                          "Select Person",
+                          style: TextStyle(
+                              color: Color(0xff666666),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Gap(16.0),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+                    const Gap(16),
+                    Row(
+                      children: const [
+                        SelectPersonWidget(
+                          isSelected: true,
+                        ),
+                        Gap(6),
+                        SelectPersonWidget(
+                          isSelected: false,
+                        ),
+                      ],
+                    ),
+                    const Gap(22),
+                    Row(
+                      children: const [
+                        Text(
+                          "Select Dates",
+                          style: TextStyle(
+                              color: Color(0xff666666),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Gap(16.0),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const Gap(12),
-              SizedBox(
-                height: 80,
-                child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    final date = DateTime.now();
-                    return CalendarItem(
-                      isToday: selectedDateIndex == index,
-                      date: date.add(Duration(days: index)),
-                      onClick: () {
-                        setState(() {
-                          selectedDateIndex = index;
-                        });
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const Gap(16.0);
-                  },
-                ),
-              ),
-              const Gap(42),
-              Row(
-                children: const [
-                  Text(
-                    "At What Time",
-                    style: TextStyle(
-                        color: Color(0xff666666),
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Gap(16.0),
-                  Expanded(child: Divider()),
-                ],
-              ),
-              const Gap(16),
               Column(
                 children: [
-                  Row(
-                    children: const [
-                      TimeWidget(isSelected: true),
-                      TimeWidget(isSelected: false),
-                      TimeWidget(isSelected: true),
-                      TimeWidget(isSelected: true),
-                      TimeWidget(isSelected: true),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      "May",
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                  const Gap(12),
+                  SizedBox(
+                    height: 80,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        final date = DateTime.now();
+                        return CalendarItem(
+                          isToday: selectedDateIndex == index,
+                          date: date.add(Duration(days: index)),
+                          onClick: () {
+                            setState(() {
+                              selectedDateIndex = index;
+                            });
+                          },
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return const Gap(16.0);
+                      },
+                    ),
+                  ),
+                  const Gap(42),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: const [
+                        Text(
+                          "At What Time",
+                          style: TextStyle(
+                              color: Color(0xff666666),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Gap(16.0),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: const [
+                            TimeWidget(isSelected: true),
+                            TimeWidget(isSelected: false),
+                            TimeWidget(isSelected: true),
+                            TimeWidget(isSelected: true),
+                            TimeWidget(isSelected: true),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
+                  const Gap(20),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6)),
+                          hintText: "Add Instructions"),
+                    ),
+                  ),
+                  const Gap(50),
+                  PrimaryButton(
+                      title: "Continue",
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const AppointmentScreen()),
+                        );
+                      }),
                 ],
-              ),
-              const Gap(20),
-              TextFormField(
-                decoration: InputDecoration(
-                    hintMaxLines: 6,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                    prefixIcon: Image.asset("assets/images/edit.png"),
-                    hintText: "Add Instructions"),
               ),
             ],
           ),
