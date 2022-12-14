@@ -9,6 +9,8 @@ import 'package:profertility/screens/nearby_doctor_screen.dart';
 import 'package:profertility/screens/popular_products_screen.dart';
 import 'package:profertility/screens/product_details_screen.dart';
 import 'package:profertility/screens/select_gender.dart';
+import 'package:profertility/screens/signup_screen.dart';
+import 'package:profertility/screens/verification_screen.dart';
 import 'screens/theme/colors.dart';
 
 void main() {
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SelectGender(),
+      home: const VerificationScreen(),
     );
   }
 }

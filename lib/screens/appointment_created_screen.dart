@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:profertility/screens/test_list_screen.dart';
 
 class AppointmentCreatedScreen extends StatefulWidget {
@@ -51,15 +52,15 @@ class _AppointmentCreatedScreenState extends State<AppointmentCreatedScreen> {
                       color: Color(0xffffffff),
                       fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 12),
+                const Gap(24),
                 const Text(
-                  "Your appointment with Dr.Maria Schedule in mask was made on Wednesday, March 22 at 16:00 pm",
+                  "Your appointment with Dr. Maria Schedule in mask was made on Wednesday, March 22 at 16:00 pm",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xffffffff),
                     fontSize: 14,
                   ),
-                )
+                ),
               ],
             ),
           )

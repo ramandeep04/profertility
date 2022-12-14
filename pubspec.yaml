@@ -40,6 +40,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   gap: ^2.0.1
   intl: ^0.17.0
+  pin_code_fields: ^7.4.0
   
 
 dev_dependencies:

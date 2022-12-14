@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:profertility/screens/select_gender.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -14,23 +16,32 @@ class VerificationScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
+            top: 0,
             right: 0,
-            left: 100,
             child: Image.asset(
               "assets/images/backgroundimage.png",
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
+            ),
+          ),
+          Positioned(
+            top: mediaQuery.viewPadding.top,
+            left: 16,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).maybePop();
+              },
+              icon: Image.asset("assets/images/arrow-left.png"),
             ),
           ),
           SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: SizedBox(
-                width: mediaQuery.size.width,
-                height: mediaQuery.size.height,
-                child: SafeArea(
-                    child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: SizedBox(
+              width: mediaQuery.size.width,
+              height: mediaQuery.size.height,
+              child: SafeArea(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset('assets/images/arrow-left.png'),
                     const SizedBox(height: 120),
                     const Text(
                       "Verification",
@@ -44,7 +55,42 @@ class VerificationScreen extends StatelessWidget {
                       "We have just sent you a verification code via 2233 3843 009",
                       style: TextStyle(color: Color(0xff898989)),
                     ),
-                    const SizedBox(height: 120),
+                    const SizedBox(height: 24),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: PinCodeTextField(
+                        length: 4,
+                        obscureText: false,
+                        animationType: AnimationType.fade,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        pinTheme: PinTheme(
+                          activeColor: Theme.of(context).primaryColor,
+                          selectedColor: Theme.of(context).primaryColor,
+                          selectedFillColor: const Color(0xfff7f8fa),
+                          inactiveFillColor: const Color(0xfff7f8fa),
+                          inactiveColor: const Color(0xfff7f8fa),
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(12.0),
+                          fieldHeight: 56,
+                          fieldWidth: 50,
+                          activeFillColor: Colors.white,
+                        ),
+                        cursorColor: Theme.of(context).primaryColor,
+                        animationDuration: const Duration(milliseconds: 300),
+                        enableActiveFill: true,
+                        backgroundColor: Colors.white,
+                        onCompleted: (v) {},
+                        onChanged: (value) {},
+                        beforeTextPaste: (text) {
+                          return true;
+                        },
+                        appContext: context,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     PrimaryButton(
                         title: "Continue",
                         onPressed: () {
@@ -76,18 +122,21 @@ class VerificationScreen extends StatelessWidget {
                     const SizedBox(height: 38),
                     Center(
                       child: TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Resend Code",
-                            style: TextStyle(
-                              color: Color(0xff4d1a53),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                        onPressed: () {},
+                        child: const Text(
+                          "Resend Code",
+                          style: TextStyle(
+                            color: Color(0xff4d1a53),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     )
                   ],
-                )),
-              ))
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
