@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:profertility/screens/test_list_screen.dart';
 
 class AppointmentCreatedScreen extends StatefulWidget {
+class AppointmentCreatedScreen extends StatefulWidget {
   const AppointmentCreatedScreen({super.key});
 
   @override
@@ -45,6 +46,7 @@ class _AppointmentCreatedScreenState extends State<AppointmentCreatedScreen> {
                 ),
                 const SizedBox(height: 30),
                 const Text(
+                  "Your Appointment has been created",
                   "Your Appointment has been created",
                   textAlign: TextAlign.center,
                   style: TextStyle(

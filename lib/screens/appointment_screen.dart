@@ -109,7 +109,7 @@ class AppointmentScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    const AppointmentCreatedScreen()));
+                                     AppointmentCreatedScreen()));
                           }),
                     ),
                   ],
