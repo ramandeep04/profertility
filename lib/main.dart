@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/health_score_screen.dart';
-import 'package:profertility/screens/personalized_screen.dart';
+import 'package:profertility/screens/home_screen.dart';
 import 'package:profertility/screens/splash_screen.dart';
 import 'screens/theme/colors.dart';
 
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const PersonalizedScreen(),
+      home: const SplashScreen(),
     );
   }
 }

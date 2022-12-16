@@ -95,256 +95,289 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.only(bottom: 24),
         children: [
-          Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HealthScoreScreen(score: 96),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(20.0),
-                  padding: const EdgeInsets.all(16.0),
-                  constraints: BoxConstraints.tight(const Size(160, 200)),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff4d1a53),
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(6.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset("assets/images/love.png"),
-                            const Text(
-                              "Health Scores",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.0,
-                                color: Color(0xff1d1d1d),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              "96%",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 46,
-                              ),
+          const Gap(16.0),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: LayoutBuilder(builder: (context, constraints) {
+                return Row(
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const HealthScoreScreen(score: 96),
                             ),
-                            Text(
-                              "5 mins ago",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Color(0xffA78DAA),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const HealthScoreScreen(score: 89),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      constraints: BoxConstraints.tight(const Size(160, 92)),
-                      decoration: BoxDecoration(
-                        color: const Color(0xfff5f7fd),
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(6.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset("assets/images/nutrition.png"),
-                                const Gap(8.0),
-                                const Text(
-                                  "Nutrition",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff1d1d1d),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            color: const Color(0xff4d1a53),
+                            borderRadius: BorderRadius.circular(16.0),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          child: Column(
                             children: [
-                              const Text(
-                                "89%",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              const Text(
-                                "Total",
-                                style: TextStyle(
-                                  color: Color(0xff898989),
-                                  fontSize: 12,
-                                ),
-                              ),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 6.0),
+                                padding: const EdgeInsets.all(6.0),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Color(0xffffa68d),
-                                      Color(0xfffd3a84),
-                                    ],
-                                  ),
-                                ),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: Colors.white),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
+                                    Image.asset("assets/images/love.png"),
                                     const Text(
-                                      "11%",
+                                      "Health Scores",
                                       style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 12.0,
+                                        color: Color(0xff1d1d1d),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Text(
+                                      "96%",
+                                      style: TextStyle(
                                         color: Colors.white,
+                                        fontSize: 46,
                                       ),
                                     ),
-                                    Image.asset("assets/images/arrow_down.png")
+                                    Text(
+                                      "5 mins ago",
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Color(0xffA78DAA),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Gap(16.0),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const HealthScoreScreen(
-                            score: 59,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      constraints: BoxConstraints.tight(const Size(160, 92)),
-                      decoration: BoxDecoration(
-                        color: const Color(0xfff5f7fd),
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
+                    const Gap(16.0),
+                    Expanded(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(6.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset("assets/images/menstruals.png"),
-                                const Gap(8.0),
-                                const Text(
-                                  "Menstruals",
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff1d1d1d),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HealthScoreScreen(score: 89),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                "Regular",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 6.0),
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Color(0xff00afa4),
-                                      Color(0xff1f8d85),
-                                    ],
-                                  ),
+                                  color: const Color(0xfff5f7fd),
+                                  borderRadius: BorderRadius.circular(16.0),
                                 ),
-                                child: Row(
+                                child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    const Text(
-                                      "59%",
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Colors.white,
+                                    Container(
+                                      padding: const EdgeInsets.all(6.0),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.white),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                              "assets/images/nutrition.png"),
+                                          const Gap(8.0),
+                                          const Text(
+                                            "Nutrition",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xff1d1d1d),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Image.asset("assets/images/arrow_up.png")
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        const Text(
+                                          "89%",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        const Text(
+                                          "Total",
+                                          style: TextStyle(
+                                            color: Color(0xff898989),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4.0, horizontal: 6.0),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Color(0xffffa68d),
+                                                Color(0xfffd3a84),
+                                              ],
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              const Text(
+                                                "11%",
+                                                style: TextStyle(
+                                                  fontSize: 12.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                  "assets/images/arrow_down.png")
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
-                            ],
+                            ),
+                          ),
+                          const Gap(16.0),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HealthScoreScreen(
+                                      score: 59,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xfff5f7fd),
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(6.0),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.white),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                              "assets/images/menstruals.png"),
+                                          const Gap(8.0),
+                                          const Text(
+                                            "Menstruals",
+                                            style: TextStyle(
+                                              fontSize: 12.0,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xff1d1d1d),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        const Text(
+                                          "Regular",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4.0, horizontal: 6.0),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Color(0xff00afa4),
+                                                Color(0xff1f8d85),
+                                              ],
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              const Text(
+                                                "59%",
+                                                style: TextStyle(
+                                                  fontSize: 12.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                  "assets/images/arrow_up.png")
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                );
+              }),
+            ),
           ),
+          const Gap(24.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
@@ -442,7 +475,14 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HealthScoreScreen(score: 96),
+                                  ),
+                                );
+                              },
                               child: const Text("See All"),
                             ),
                           ],

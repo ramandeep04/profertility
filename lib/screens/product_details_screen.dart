@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/cart_screen.dart';
-import 'package:profertility/screens/checkout_screen.dart';
 import 'package:profertility/screens/popular_products_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 

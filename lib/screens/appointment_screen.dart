@@ -112,8 +112,7 @@ class AppointmentScreen extends StatelessWidget {
                     const SelectPaymentWidget(),
                     const Gap(8),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: PrimaryButton(
                           title: "Continue",
                           onPressed: () {

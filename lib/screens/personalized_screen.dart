@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:profertility/config/config.dart';
+import 'package:profertility/screens/diet_screen.dart';
 import 'package:profertility/screens/filter_screen.dart';
 
 class PersonalizedScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _PersonalizedScreenState extends State<PersonalizedScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: false,
+        automaticallyImplyLeading: false,
         title: const Text(
           "Popular Dietition",
           style: TextStyle(
@@ -175,7 +177,13 @@ class DietItem extends StatelessWidget {
                   ),
                   fixedSize: const Size(110, 20),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const DietScreen(),
+                    ),
+                  );
+                },
                 child: const Text(
                   "Explore",
                   style: TextStyle(color: Colors.white),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
-import 'package:profertility/screens/appointment_created_screen.dart';
 import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/chatting_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';

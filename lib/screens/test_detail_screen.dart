@@ -3,7 +3,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/cart_screen.dart';
 import 'package:profertility/screens/appointment_details_screen.dart';
-import 'package:profertility/screens/notification_screen.dart';
 import 'package:profertility/screens/rating_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';

@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/doctor_detail_screen.dart';
 import 'package:profertility/screens/filter_screen.dart';
-import 'package:profertility/screens/widgets/my_appbar.dart';
 
 import 'popular_products_screen.dart';
 
@@ -14,8 +13,18 @@ class NearbyDoctorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
-        title: "Nearby Doctors",
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          "Nearby Doctors",
+          style: TextStyle(
+            color: Color(0xff4d1a53),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),

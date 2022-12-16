@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:profertility/screens/questions_screen.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';

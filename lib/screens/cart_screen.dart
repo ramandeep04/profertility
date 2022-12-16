@@ -330,7 +330,7 @@ class _CartItemState extends State<CartItem> {
                       "\$66",
                       style: TextStyle(
                         color: Color(0xff00afa4),
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

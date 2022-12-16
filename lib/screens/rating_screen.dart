@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
-import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/cart_screen.dart';
 import 'package:profertility/screens/myappointment_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
