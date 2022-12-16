@@ -23,16 +23,6 @@ class VerificationScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          Positioned(
-            top: mediaQuery.viewPadding.top,
-            left: 16,
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).maybePop();
-              },
-              icon: Image.asset("assets/images/arrow-left.png"),
-            ),
-          ),
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: SizedBox(
@@ -46,9 +36,10 @@ class VerificationScreen extends StatelessWidget {
                     const Text(
                       "Verification",
                       style: TextStyle(
-                          fontSize: 24,
-                          color: Color(0xff4d1a53),
-                          fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        color: Color(0xff4d1a53),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     const Text(
@@ -69,9 +60,9 @@ class VerificationScreen extends StatelessWidget {
                         pinTheme: PinTheme(
                           activeColor: Theme.of(context).primaryColor,
                           selectedColor: Theme.of(context).primaryColor,
-                          selectedFillColor: const Color(0xfff7f8fa),
-                          inactiveFillColor: const Color(0xfff7f8fa),
-                          inactiveColor: const Color(0xfff7f8fa),
+                          selectedFillColor: const Color.fromARGB(255, 238, 238, 238),
+                          inactiveFillColor: const Color.fromARGB(255, 238, 238, 238),
+                          inactiveColor: const Color.fromARGB(255, 241, 241, 241),
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(12.0),
                           fieldHeight: 56,
@@ -104,19 +95,20 @@ class VerificationScreen extends StatelessWidget {
                     Center(
                       child: RichText(
                         text: TextSpan(
-                            text: "The verify code will expire in",
-                            style: GoogleFonts.comfortaa().copyWith(
-                              color: const Color(0xff1d1d1d),
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: " 00:59",
-                                  style: GoogleFonts.comfortaa().copyWith(
-                                    color: const Color(0xffd52057),
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {})
-                            ]),
+                          text: "The verify code will expire in",
+                          style: GoogleFonts.comfortaa().copyWith(
+                            color: const Color(0xff1d1d1d),
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: " 00:59",
+                                style: GoogleFonts.comfortaa().copyWith(
+                                  color: const Color(0xffd52057),
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {})
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 38),
@@ -136,7 +128,17 @@ class VerificationScreen extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Positioned(
+            top: MediaQuery.of(context).viewPadding.top,
+            left: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).maybePop();
+              },
+              icon: Image.asset("assets/images/arrow-left.png"),
+            ),
+          ),
         ],
       ),
     );

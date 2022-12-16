@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profertility/screens/appointment_screen.dart';
-import 'package:profertility/screens/checkout_screen.dart';
-import 'package:profertility/screens/home_screen.dart';
-import 'package:profertility/screens/myappointment_screen.dart';
-import 'package:profertility/screens/nearby_doctor_screen.dart';
-import 'package:profertility/screens/popular_products_screen.dart';
-import 'package:profertility/screens/product_details_screen.dart';
-import 'package:profertility/screens/select_gender.dart';
-import 'package:profertility/screens/signup_screen.dart';
-import 'package:profertility/screens/verification_screen.dart';
+import 'package:profertility/screens/health_score_screen.dart';
+import 'package:profertility/screens/personalized_screen.dart';
+import 'package:profertility/screens/splash_screen.dart';
 import 'screens/theme/colors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -24,6 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Profertility',
+      builder: (context, child) {
+        final mediaQueryData = MediaQuery.of(context);
+        return MediaQuery(
+          data: mediaQueryData.copyWith(textScaleFactor: 1.0),
+          child: child!,
+        );
+      },
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: ThemeColor.mcgpalette,
@@ -36,7 +40,8 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: const Color(0xfff7f8fa),
-          contentPadding: const EdgeInsets.all(24),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(70),
             borderSide: BorderSide.none,
@@ -50,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const VerificationScreen(),
+      home: const PersonalizedScreen(),
     );
   }
 }

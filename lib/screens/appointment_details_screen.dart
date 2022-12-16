@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:profertility/screens/product_details_screen.dart';
 import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
+import 'package:profertility/screens/widgets/primary_button.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
+class AppointmentDetailsScreen extends StatefulWidget {
   const AppointmentDetailsScreen({super.key});
 
   @override
+  State<AppointmentDetailsScreen> createState() =>
+      _AppointmentDetailsScreenState();
+}
+
+class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
+  bool isDelayed = true;
+  @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: const MyAppbar(title: "# 28684"),
+      appBar: const MyAppbar(title: "#28684"),
       body: ListView(
         children: [
           Column(
@@ -111,23 +119,17 @@ class AppointmentDetailsScreen extends StatelessWidget {
                       amount: "\$35",
                     ),
                     const SizedBox(height: 24),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color(0xffe8e8e8),
-                        fixedSize: Size(size.width, 56),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(70),
-                        ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isDelayed = !isDelayed;
+                        });
+                      },
+                      child: PrimaryButton(
+                        title: isDelayed ? "1 Hr 30 Mins are left" : "Join Now",
+                        onPressed: isDelayed ? null : () {},
                       ),
-                      onPressed: (() {}),
-                      child: const Text(
-                        "1 Hr 30 Mins are left",
-                        style: TextStyle(
-                          color: Color(0xff898989),
-                        ),
-                      ),
-                    )
+                    ),
                   ],
                 ),
               )
@@ -154,65 +156,70 @@ class LabTestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-      decoration: BoxDecoration(
-          color: const Color(0xfff7f8fa),
-          borderRadius: BorderRadius.circular(6)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              image,
-              width: 80,
-              height: 60,
-              fit: BoxFit.cover,
-            ),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ProductDetailsScreen(),
           ),
-          Text(
-            number,
-            style: const TextStyle(
-              fontSize: 16.0,
-              color: Color(0xff1d1d1d),
-            ),
-          ),
-          Column(
-            children: [
-              Text(
-                type,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  color: Color(0xff1d1d1d),
-                ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        decoration: BoxDecoration(
+            color: const Color(0xfff7f8fa),
+            borderRadius: BorderRadius.circular(6)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                image,
+                width: 80,
+                height: 60,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(height: 4),
-              Row(
-                children: [
-                  Text(
-                    amount,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
+            ),
+            Text(
+              number,
+              style: const TextStyle(
+                color: Color(0xff1d1d1d),
+              ),
+            ),
+            Column(
+              children: [
+                Text(
+                  type,
+                  style: const TextStyle(
+                    color: Color(0xff1d1d1d),
                   ),
-                  const Gap(4.0),
-                  const Text(
-                    " \$76",
-                    style: TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                      fontWeight: FontWeight.w300,
-                      color: Color(0xff898989),
-                      fontSize: 14.0,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      amount,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ],
+                    const Gap(4.0),
+                    const Text(
+                      " \$76",
+                      style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xff898989),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

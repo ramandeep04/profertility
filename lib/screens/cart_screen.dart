@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:profertility/screens/checkout_screen.dart';
+import 'package:profertility/screens/promocodes_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  String? coupon;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +34,22 @@ class CartScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const CartCouponWidget(
-                    coupon: 'Fertility7373',
+                  CartCouponWidget(
+                    coupon: coupon,
+                    onCancel: () {
+                      setState(() {
+                        coupon = null;
+                      });
+                    },
+                    onClick: () async {
+                      final selectedCoupon = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const PromocodesScreen()),
+                      );
+                      setState(() {
+                        coupon = selectedCoupon;
+                      });
+                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -61,64 +83,72 @@ class CartScreen extends StatelessWidget {
 
 class CartCouponWidget extends StatelessWidget {
   final String? coupon;
+  final VoidCallback onClick;
+  final VoidCallback onCancel;
   const CartCouponWidget({
     Key? key,
     required this.coupon,
+    required this.onClick,
+    required this.onCancel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: const Color(0xfff7f8fa),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        children: [
-          Image.asset(
-            "assets/images/tag.png",
-          ),
-          const SizedBox(width: 16.0),
-          if (coupon == null)
-            const Expanded(
-              child: Text(
-                "Apply Coupon",
-                style: TextStyle(
-                  color: Color(0xff666666),
-                  fontSize: 16.0,
-                ),
-              ),
-            )
-          else
-            Expanded(
-              child: Text.rich(
-                TextSpan(
-                  text: "$coupon",
-                  style: const TextStyle(
-                    color: Color(0xff4d1a53),
-                    fontSize: 16.0,
-                  ),
-                  children: [
-                    const WidgetSpan(
-                      child: SizedBox(width: 8.0),
-                    ),
-                    TextSpan(
-                      text: "Coupon Applied",
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 13.0,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+    return InkWell(
+      onTap: onClick,
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+          color: const Color(0xfff7f8fa),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              "assets/images/tag.png",
             ),
-          InkWell(
-            onTap: () {},
-            child: Image.asset("assets/images/cancel.png"),
-          )
-        ],
+            const SizedBox(width: 16.0),
+            if (coupon == null)
+              const Expanded(
+                child: Text(
+                  "Apply Coupon",
+                  style: TextStyle(
+                    color: Color(0xff666666),
+                    fontSize: 14.0,
+                  ),
+                ),
+              )
+            else
+              Expanded(
+                child: Text.rich(
+                  TextSpan(
+                    text: "$coupon",
+                    style: const TextStyle(
+                      color: Color(0xff4d1a53),
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    children: [
+                      const WidgetSpan(
+                        child: SizedBox(width: 8.0),
+                      ),
+                      TextSpan(
+                        text: "Coupon Applied",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 12.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            InkWell(
+              onTap: onCancel,
+              child: Image.asset("assets/images/cancel.png"),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -226,15 +256,6 @@ class PaymentSummary extends StatelessWidget {
   }
 }
 
-class CouponWidget extends StatelessWidget {
-  const CouponWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class CartItem extends StatefulWidget {
   final Size? buttonSize;
   const CartItem({
@@ -270,10 +291,14 @@ class _CartItemState extends State<CartItem> {
             aspectRatio: 1,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.0)),
-              child: Image.asset(
-                "assets/images/amlodipine.png",
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.0),
+                image: const DecorationImage(
+                  image: AssetImage(
+                    "assets/images/125-test.png",
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -284,15 +309,15 @@ class _CartItemState extends State<CartItem> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text(
-                  "Amlodipine",
+                  "Fertility & Wellness test",
                   style: TextStyle(
                     color: Color(0xff1d1d1d),
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const Text(
-                  "Packing of 20 tablets",
+                  "Test",
                   style: TextStyle(
                     color: Color(0xff666666),
                     fontSize: 12,
@@ -313,9 +338,11 @@ class _CartItemState extends State<CartItem> {
                       children: [
                         InkWell(
                           onTap: () {
-                            setState(() {
-                              amount -= 1;
-                            });
+                            if (amount > 1) {
+                              setState(() {
+                                amount -= 1;
+                              });
+                            }
                           },
                           child: Container(
                             alignment: Alignment.center,

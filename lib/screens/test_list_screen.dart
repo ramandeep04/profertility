@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/test_detail_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 
+import '../config/config.dart';
+import 'popular_products_screen.dart';
+
 class TestListScreen extends StatefulWidget {
   const TestListScreen({super.key});
 
@@ -35,7 +38,9 @@ class _TestListScreenState extends State<TestListScreen>
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showFilterBottomSheet(context);
+              },
               child: Row(
                 children: [
                   const Text(
@@ -106,82 +111,95 @@ class _TestListScreenState extends State<TestListScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        padding: const EdgeInsets.only(top: 6.0),
-                        children: const [
-                          TestListWidget(
-                            testnumber: "#3242333",
-                            items: "05",
-                            amount: "\$1250",
-                            date: "25 May, 2022",
-                            status: "In Progress",
-                            color: Color(0xff2d92c7),
-                          ),
-                          SizedBox(height: 16),
-                          TestListWidget(
-                            testnumber: "#3247788",
-                            items: "02",
-                            amount: "\$1250",
-                            date: "25 May, 2022",
-                            status: "In Progress",
-                            color: Color(0xff2d92c7),
-                          ),
-                          SizedBox(height: 16),
-                          TestListWidget(
-                            testnumber: "#3247788",
-                            items: "05",
-                            amount: "\$1250",
-                            date: "25 May, 2022",
-                            status: "Pending",
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
+                ListView(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  children: const [
+                    TestListWidget(
+                      testnumber: "#3242333",
+                      items: "05",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "In Progress",
+                      color: Color(0xff2d92c7),
+                    ),
+                    SizedBox(height: 16),
+                    TestListWidget(
+                      testnumber: "#3247788",
+                      items: "02",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "In Progress",
+                      color: Color(0xff2d92c7),
+                    ),
+                    SizedBox(height: 16),
+                    TestListWidget(
+                      testnumber: "#3247788",
+                      items: "05",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "Pending",
+                      color: Colors.red,
                     ),
                   ],
                 ),
-                Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.only(top: 6.0),
-                    children: const [
-                      TestListWidget(
-                        testnumber: "#3242333",
-                        items: "05",
-                        amount: "\$1250",
-                        date: "25 May, 2022",
-                        status: "In Progress",
-                        color: Colors.blue,
-                      ),
-                      SizedBox(height: 16),
-                      TestListWidget(
-                        testnumber: "#3247788",
-                        items: "02",
-                        amount: "\$1250",
-                        date: "25 May, 2022",
-                        status: "Complete",
-                        color: Colors.green,
-                      ),
-                      SizedBox(height: 16),
-                      TestListWidget(
-                        testnumber: "#3247788",
-                        items: "05",
-                        amount: "\$1250",
-                        date: "25 May, 2022",
-                        status: "Pending",
-                        color: Color(0xff2d92c7),
-                      ),
-                    ],
-                  ),
+                ListView(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  children: const [
+                    TestListWidget(
+                      testnumber: "#3242333",
+                      items: "05",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "In Progress",
+                      color: Colors.blue,
+                    ),
+                    SizedBox(height: 16),
+                    TestListWidget(
+                      testnumber: "#3247788",
+                      items: "02",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "Complete",
+                      color: Colors.green,
+                    ),
+                    SizedBox(height: 16),
+                    TestListWidget(
+                      testnumber: "#3247788",
+                      items: "05",
+                      amount: "\$1250",
+                      date: "25 May, 2022",
+                      status: "Pending",
+                      color: Color(0xff2d92c7),
+                    ),
+                  ],
                 ),
               ],
             ),
           )
         ],
       ),
+    );
+  }
+
+  void showFilterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(24.0),
+        ),
+      ),
+      context: context,
+      builder: (context) {
+        return const FilterBottomSheet(
+          filters: [
+            "Sort"
+          ],
+          childrens: [
+            TestFilter(),
+          ],
+        );
+      },
     );
   }
 }
@@ -312,6 +330,47 @@ class TestListWidget extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TestFilter extends StatefulWidget {
+  const TestFilter({super.key});
+
+  @override
+  State<TestFilter> createState() => _TestFilterState();
+}
+
+class _TestFilterState extends State<TestFilter> {
+  int selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      runSpacing: 24.0,
+      children: List.generate(
+        Config.sortingTest.length,
+        (index) {
+          final filter = Config.sortingTest[index];
+          return InkWell(
+            onTap: () {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            child: Row(
+              children: [
+                Image.asset(
+                  index == selectedIndex
+                      ? "assets/images/male.png"
+                      : "assets/images/female.png",
+                ),
+                const SizedBox(width: 24.0),
+                Text(filter)
+              ],
+            ),
+          );
+        },
       ),
     );
   }

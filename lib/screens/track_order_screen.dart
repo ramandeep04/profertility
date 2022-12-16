@@ -86,6 +86,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                     child: const Text(
                       "Track Order",
                       style: TextStyle(
+                        fontSize: 16.0,
                         color: Color(0xff00afa4),
                       ),
                     ),

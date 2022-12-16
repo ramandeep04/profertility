@@ -14,10 +14,14 @@ class NotificationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: Text(
                   "Recent",
-                  style: TextStyle(color: Color(0xff4c5f68), fontSize: 16),
+                  style: TextStyle(
+                    color: Color(0xff4c5f68),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               const SizedBox(height: 12),
@@ -30,20 +34,24 @@ class NotificationScreen extends StatelessWidget {
                 image: "assets/images/person.png",
                 message: "Thank you! Your transaction is completed",
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
               const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Older Notification",
-                    style: TextStyle(color: Color(0xff4c5f68), fontSize: 16)),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                child: Text(
+                  "Older Notification",
+                  style: TextStyle(
+                    color: Color(0xff4c5f68),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
-              const SizedBox(height: 22),
               ListTile(
                 leading: Image.asset("assets/images/Locationpin.png"),
                 title: const Text(
                   "Booking #1205 has been cancelled",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               ),
@@ -53,7 +61,6 @@ class NotificationScreen extends StatelessWidget {
                   "Booking #1234 has been successful",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               ),
@@ -63,7 +70,6 @@ class NotificationScreen extends StatelessWidget {
                   "Thank you! Your transaction is completed",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               ),
@@ -73,7 +79,6 @@ class NotificationScreen extends StatelessWidget {
                   "Booking #1205 has been cancelled",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               ),
@@ -83,7 +88,6 @@ class NotificationScreen extends StatelessWidget {
                   "Thank you! Your transaction is completed",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               ),
@@ -93,7 +97,6 @@ class NotificationScreen extends StatelessWidget {
                   "Thank you! Your transaction is completed",
                   style: TextStyle(
                     color: Color(0xff1a1824),
-                    fontSize: 12,
                   ),
                 ),
               )
@@ -117,7 +120,7 @@ class NotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Color(0xffa8a9b4)),
+      decoration: BoxDecoration(color: Colors.grey[100]!),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
@@ -129,7 +132,9 @@ class NotificationWidget extends StatelessWidget {
             Text(
               message,
               style: const TextStyle(
-                  color: Color(0xff020a0c), fontWeight: FontWeight.w300),
+                color: Color(0xff020a0c),
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ],
         ),

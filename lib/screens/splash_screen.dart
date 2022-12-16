@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:profertility/screens/onboarding_screen.dart';
 
@@ -9,6 +11,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1500), () {
@@ -23,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    log(MediaQuery.of(context).textScaleFactor.toString());
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -32,9 +36,10 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.cover,
           ),
           Positioned.fill(
-              child: Center(
-            child: Image.asset("assets/images/splash.png"),
-          ))
+            child: Center(
+              child: Image.asset("assets/images/splash.png"),
+            ),
+          )
         ],
       ),
     );

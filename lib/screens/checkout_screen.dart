@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profertility/screens/add_new_address_screen.dart';
 import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/track_order_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
@@ -97,7 +98,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const AddNewAddressScreen(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         "Add New",
                         style: TextStyle(

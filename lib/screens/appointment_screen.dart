@@ -8,6 +8,8 @@ import 'package:profertility/screens/schedule_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
+import 'promocodes_screen.dart';
+
 class AppointmentScreen extends StatelessWidget {
   const AppointmentScreen({super.key});
 
@@ -81,8 +83,15 @@ class AppointmentScreen extends StatelessWidget {
                       color: Color(0xff807d98),
                     ),
                     const SizedBox(height: 16),
-                    const CartCouponWidget(
-                      coupon: "Feritility7323",
+                    CartCouponWidget(
+                      coupon: null,
+                      onCancel: () {},
+                      onClick: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const PromocodesScreen()),
+                        );
+                      },
                     )
                   ],
                 ),
@@ -101,15 +110,16 @@ class AppointmentScreen extends StatelessWidget {
                     ),
                     const Gap(22),
                     const SelectPaymentWidget(),
-                    const Gap(26),
+                    const Gap(8),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16.0),
                       child: PrimaryButton(
                           title: "Continue",
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                     AppointmentCreatedScreen()));
+                                    const AppointmentCreatedScreen()));
                           }),
                     ),
                   ],

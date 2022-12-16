@@ -173,7 +173,7 @@ class AppointmentsWidget extends StatelessWidget {
                       Text(
                         name,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Color(0xff1d1d1d),
                           fontWeight: FontWeight.bold,
                         ),
@@ -184,7 +184,10 @@ class AppointmentsWidget extends StatelessWidget {
                         children: const [
                           Text(
                             "Fertility Specialist",
-                            style: TextStyle(color: Color(0xff666666)),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xff666666),
+                            ),
                           ),
                           Text(
                             "#28684",

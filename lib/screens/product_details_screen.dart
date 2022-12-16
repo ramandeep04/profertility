@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:profertility/screens/cart_screen.dart';
+import 'package:profertility/screens/checkout_screen.dart';
 import 'package:profertility/screens/popular_products_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 
-import 'cart_screen.dart';
 import 'widgets/primary_button.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key});
 
+  @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  bool isInCart = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +33,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 2,
                     child: Image.asset(
-                      "assets/images/glimepiride.png",
+                      "assets/images/125-test.png",
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -41,9 +48,9 @@ class ProductDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "Epiride M1",
+                            "Fertility & Wellness test",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Color(0xff272c3f),
                               fontWeight: FontWeight.bold,
                             ),
@@ -60,7 +67,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               text: "\$35",
                               style: GoogleFonts.comfortaa().copyWith(
                                 color: Theme.of(context).primaryColor,
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                               children: [
@@ -151,10 +158,9 @@ class ProductDetailsScreen extends StatelessWidget {
                         "Lorem Ipsum is simply dummy text of the printing & typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
                         style: TextStyle(
                           color: Color(0xff666666),
-                          height: 1.3,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 24),
                       const Text(
                         "Product Info",
                         style: TextStyle(
@@ -196,7 +202,14 @@ class ProductDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PopularProductsScreen(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               "See All",
                               style: TextStyle(
@@ -218,7 +231,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return const ProductItem(
-                        assetImage: "assets/images/glimepiride.png",
+                        assetImage: "assets/images/125-test.png",
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
@@ -236,11 +249,19 @@ class ProductDetailsScreen extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
               child: PrimaryButton(
                 title: "",
-                child: const AddToCartWidget(isInCart: true),
+                child: AddToCartWidget(isInCart: isInCart),
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const CartScreen()),
-                  );
+                  if (isInCart == false) {
+                    setState(() {
+                      isInCart = true;
+                    });
+                  } else {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const CartScreen(),
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -251,13 +272,20 @@ class ProductDetailsScreen extends StatelessWidget {
   }
 }
 
-class AddToCartWidget extends StatelessWidget {
+class AddToCartWidget extends StatefulWidget {
   final bool isInCart;
   const AddToCartWidget({super.key, required this.isInCart});
 
   @override
+  State<AddToCartWidget> createState() => _AddToCartWidgetState();
+}
+
+class _AddToCartWidgetState extends State<AddToCartWidget> {
+  int quantity = 1;
+
+  @override
   Widget build(BuildContext context) {
-    if (isInCart) {
+    if (widget.isInCart) {
       return Padding(
         padding: const EdgeInsets.only(right: 24.0),
         child: Row(
@@ -266,7 +294,11 @@ class AddToCartWidget extends StatelessWidget {
             Row(
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      quantity -= 1;
+                    });
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     constraints: BoxConstraints.tight(
@@ -284,16 +316,20 @@ class AddToCartWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10.0),
-                const Text(
-                  "1",
-                  style: TextStyle(
+                Text(
+                  "$quantity",
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                   ),
                 ),
                 const SizedBox(width: 10.0),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      quantity += 1;
+                    });
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     constraints: BoxConstraints.tight(
@@ -314,25 +350,25 @@ class AddToCartWidget extends StatelessWidget {
             ),
             const Text.rich(
               TextSpan(
-                  text: "\$ 199.00",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    letterSpacing: 0.5,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    WidgetSpan(child: SizedBox(width: 8.0)),
-                    TextSpan(
-                      text: "Go to Cart",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                        letterSpacing: 0.1,
-                        fontWeight: FontWeight.normal,
-                      ),
+                text: "\$ 199.00",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  WidgetSpan(child: SizedBox(width: 8.0)),
+                  TextSpan(
+                    text: "Go to Cart",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
                     ),
-                  ]),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -342,6 +378,7 @@ class AddToCartWidget extends StatelessWidget {
         "Add to Cart",
         style: TextStyle(
           color: Colors.white,
+          fontSize: 16,
         ),
       );
     }

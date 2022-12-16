@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:profertility/screens/profile_setup_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
-class SelectGender extends StatelessWidget {
+class SelectGender extends StatefulWidget {
   const SelectGender({super.key});
+
+  @override
+  State<SelectGender> createState() => _SelectGenderState();
+}
+
+class _SelectGenderState extends State<SelectGender> {
+  int selectedGender = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,12 @@ class SelectGender extends StatelessWidget {
             Positioned(
               bottom: 0,
               right: 0,
-              child: Image.asset("assets/images/image.png"),
+              width: 200,
+              height: 200,
+              child: Image.asset(
+                "assets/images/image.png",
+                fit: BoxFit.cover,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -30,9 +43,10 @@ class SelectGender extends StatelessWidget {
                   const Text(
                     "Please select your Gender",
                     style: TextStyle(
-                        color: Color(0xff4d1a53),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                      color: Color(0xff4d1a53),
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   const Text(
@@ -43,16 +57,28 @@ class SelectGender extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   Row(
-                    children: const [
+                    children: [
                       Expanded(
                         child: SelectionWidget(
-                          isSelected: true,
+                          asset: "assets/images/mars.png",
+                          isSelected: selectedGender == 0,
+                          onClick: () {
+                            setState(() {
+                              selectedGender = 0;
+                            });
+                          },
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const Gap(20),
                       Expanded(
                         child: SelectionWidget(
-                          isSelected: false,
+                          asset: "assets/images/femenine.png",
+                          isSelected: selectedGender == 1,
+                          onClick: () {
+                            setState(() {
+                              selectedGender = 1;
+                            });
+                          },
                         ),
                       ),
                     ],
@@ -80,35 +106,44 @@ class SelectGender extends StatelessWidget {
 
 class SelectionWidget extends StatelessWidget {
   final bool isSelected;
+  final String asset;
+  final VoidCallback onClick;
 
   const SelectionWidget({
     Key? key,
     required this.isSelected,
+    required this.onClick,
+    required this.asset,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xffebfafb),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset(
-            isSelected ? "assets/images/boy.png" : "assets/images/girl.png",
-          ),
-          Image.asset(
-            isSelected
-                ? "assets/images/unselect.png"
-                : "assets/images/tick.png",
-            width: 100,
-            height: 100,
-            fit: BoxFit.contain,
-          ),
-        ],
+    return InkWell(
+      onTap: onClick,
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xffebfafb),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              asset,
+              width: 120,
+              height: 120,
+            ),
+            Image.asset(
+              isSelected
+                  ? "assets/images/tick.png"
+                  : "assets/images/unselect.png",
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+            ),
+          ],
+        ),
       ),
     );
   }

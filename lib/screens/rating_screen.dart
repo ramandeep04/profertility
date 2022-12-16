@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
+import 'package:profertility/screens/appointment_screen.dart';
 import 'package:profertility/screens/cart_screen.dart';
+import 'package:profertility/screens/myappointment_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
@@ -86,7 +88,13 @@ class RatingScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   PrimaryButton(
                     title: "Submit",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MyAppointmentscreen(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

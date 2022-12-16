@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/verification_screen.dart';
+import 'package:profertility/screens/widgets/phone_number_field.dart';
 import 'package:profertility/screens/widgets/primary_button.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -35,30 +36,29 @@ class SignupScreen extends StatelessWidget {
                     const Text(
                       "Sign Up",
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff1d1d1d)),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff1d1d1d),
+                      ),
                     ),
                     const SizedBox(height: 120),
                     const Text(
                       "Welcome User",
                       style: TextStyle(
-                          fontSize: 24,
-                          color: Color(0xff4d1a53),
-                          fontWeight: FontWeight.bold),
+                        fontSize: 22,
+                        color: Color(0xff4d1a53),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     const Text(
                       "Please enter your Phone number to continue",
-                      style: TextStyle(color: Color(0xff898989)),
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "91      93230 02660",
-                        prefixIcon: Image.asset("assets/images/Polygon.png"),
+                      style: TextStyle(
+                        color: Color(0xff898989),
                       ),
                     ),
+                    const SizedBox(height: 12),
+                    const PhoneNumberField(),
                     const SizedBox(height: 26),
                     PrimaryButton(
                       title: "Continue",
@@ -74,11 +74,12 @@ class SignupScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Continue with Email",
-                            style: TextStyle(color: Color(0xff1d1d1d)),
-                          )),
+                        onPressed: () {},
+                        child: const Text(
+                          "Continue with Email",
+                          style: TextStyle(color: Color(0xff1d1d1d)),
+                        ),
+                      ),
                     ),
                     const Spacer(),
                     Center(

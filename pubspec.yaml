@@ -41,6 +41,7 @@ dependencies:
   gap: ^2.0.1
   intl: ^0.17.0
   pin_code_fields: ^7.4.0
+  country_picker: ^2.0.18
   
 
 dev_dependencies:

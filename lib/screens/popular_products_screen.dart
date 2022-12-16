@@ -15,7 +15,9 @@ class PopularProductsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Image.asset("assets/images/arrow-left.png"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         titleSpacing: 0.0,
         centerTitle: false,
@@ -71,8 +73,8 @@ class PopularProductsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ProductItem(
                     assetImage: index % 2 == 0
-                        ? "assets/images/amlodipine.png"
-                        : "assets/images/glimepiride.png",
+                        ? "assets/images/125-test.png"
+                        : "assets/images/125-test.png",
                   );
                 },
               ),
@@ -93,14 +95,26 @@ class PopularProductsScreen extends StatelessWidget {
       ),
       context: context,
       builder: (context) {
-        return const FilterBottomSheet();
+        return const FilterBottomSheet(
+          filters: ["Filter", "Sort"],
+          childrens: [
+            FilterSheet(),
+            SortingFilter(),
+          ],
+        );
       },
     );
   }
 }
 
 class FilterBottomSheet extends StatefulWidget {
-  const FilterBottomSheet({super.key});
+  final List<Widget> childrens;
+  final List<String> filters;
+  const FilterBottomSheet({
+    super.key,
+    required this.childrens,
+    required this.filters,
+  });
 
   @override
   State<FilterBottomSheet> createState() => _FilterBottomSheetState();
@@ -124,8 +138,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet>
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             Container(
               width: 50,
               height: 4,
@@ -134,34 +149,24 @@ class _FilterBottomSheetState extends State<FilterBottomSheet>
                 borderRadius: BorderRadius.circular(16.0),
               ),
             ),
-            const SizedBox(height: 24.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FilterItem(
-                  filter: "Filter",
-                  isSelected: selectedIndex == 0,
-                  onClick: () {
-                    setState(() {
-                      selectedIndex = 0;
-                    });
-                    controller.animateToPage(0,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOut);
-                  },
-                ),
-                FilterItem(
-                  filter: "Sort",
-                  isSelected: selectedIndex == 1,
-                  onClick: () {
-                    setState(() {
-                      selectedIndex = 1;
-                    });
-                    controller.animateToPage(1,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOut);
-                  },
-                ),
+                ...List.generate(widget.filters.length, (index) {
+                  return FilterItem(
+                    filter: widget.filters[index],
+                    isSelected: selectedIndex == index,
+                    onClick: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      controller.animateToPage(index,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeInOut);
+                    },
+                  );
+                }),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -173,28 +178,27 @@ class _FilterBottomSheetState extends State<FilterBottomSheet>
                 ),
               ],
             ),
+            const Divider(),
+            const SizedBox(height: 16.0),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: PageView(
-                  controller: controller,
-                  onPageChanged: (index) {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                  children: const [
-                    FilterSheet(),
-                    SortingFilter(),
-                  ],
-                ),
+              child: PageView(
+                controller: controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                children: widget.childrens,
               ),
             ),
-            PrimaryButton(
-              title: "Apply filters",
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: PrimaryButton(
+                title: "Apply filters",
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
           ],
         ),
@@ -255,7 +259,7 @@ class FilterSheet extends StatefulWidget {
 }
 
 class _FilterSheetState extends State<FilterSheet> {
-  double price = 0.0;
+  double price = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -274,6 +278,13 @@ class _FilterSheetState extends State<FilterSheet> {
         ),
         Slider(
           value: price,
+          label: price.round().toString(),
+          max: 1600,
+          min: 20,
+          divisions: 20,
+          activeColor: const Color.fromRGBO(247, 248, 250, 1),
+          inactiveColor: const Color.fromRGBO(247, 248, 250, 1),
+          thumbColor: Theme.of(context).primaryColor,
           onChanged: (v) {
             setState(() {
               price = v;
@@ -373,13 +384,19 @@ class _SortingFilterState extends State<SortingFilter> {
   }
 }
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   final String assetImage;
   const ProductItem({
     Key? key,
     required this.assetImage,
   }) : super(key: key);
 
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  bool isFavourite = false;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -402,28 +419,21 @@ class ProductItem extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 6,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xfff5f7fd),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Image.asset(
-                        assetImage,
-                      ),
+                flex: 5,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: const Color(0xfff5f7fd),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Image.asset(
+                      widget.assetImage,
+                      fit: BoxFit.cover,
                     ),
-                    const Positioned(
-                      top: 10,
-                      right: 10,
-                      child: Icon(
-                        Icons.favorite_border_rounded,
-                        color: Color(0xffB9B9B9),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               Expanded(
@@ -431,39 +441,15 @@ class ProductItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const Expanded(
-                            child: Text(
-                              "Amlodipine",
-                              style: TextStyle(
-                                color: Color(0xff1d1d1d),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              children: <InlineSpan>[
-                                WidgetSpan(
-                                  alignment: PlaceholderAlignment.top,
-                                  child: Image.asset("assets/images/star.png"),
-                                ),
-                                const WidgetSpan(child: SizedBox(width: 2.0)),
-                                TextSpan(
-                                  text: "4.6",
-                                  style: GoogleFonts.comfortaa().copyWith(
-                                    color: const Color(0xff898989),
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      const Text(
+                        "Fertility & Wellness test",
+                        style: TextStyle(
+                          color: Color(0xff1d1d1d),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       Align(
                         alignment: Alignment.centerLeft,

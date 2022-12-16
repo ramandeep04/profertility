@@ -15,8 +15,7 @@ class DoctorDetailScreen extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: ListView(
           children: [
             SafeArea(
               bottom: false,
@@ -72,7 +71,7 @@ class DoctorDetailScreen extends StatelessWidget {
                   const Text(
                     "Dr. Mario Arsenio",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Color(0xff19144b),
                     ),
@@ -82,7 +81,7 @@ class DoctorDetailScreen extends StatelessWidget {
                     "Radiology Specialist",
                     style: TextStyle(
                       color: Color(0xff62606d),
-                      fontSize: 16.0,
+                      fontSize: 14.0,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -93,7 +92,7 @@ class DoctorDetailScreen extends StatelessWidget {
                       Text(
                         "2630 Wheeler Bridge, 768 New York",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Theme.of(context).primaryColor,
                         ),
                       ),

@@ -9,6 +9,7 @@ class WelcomeProfertility extends StatefulWidget {
 }
 
 class _WelcomeProfertilityState extends State<WelcomeProfertility> {
+  @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1500), () {
@@ -24,40 +25,39 @@ class _WelcomeProfertilityState extends State<WelcomeProfertility> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff00afa4),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned(
-              bottom: 0,
-              top: 0,
-              child: Image.asset(
-                "assets/images/wcbackg.png",
-                fit: BoxFit.contain,
-              ),
+      backgroundColor: const Color(0xff00afa4),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/wcbackg.png",
+              fit: BoxFit.cover,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Image.asset("assets/images/welcometick.png"),
-                ),
-                const SizedBox(height: 30),
-                const Text(
-                  "Welcome to Profertility",
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Color(0xffffffff),
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  "Lorem Ipsum is simply dummy text of\nthe printing and typesetting industry.",
-                  style: TextStyle(color: Color(0xffffffff)),
-                )
-              ],
-            )
-          ],
-        ));
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Image.asset("assets/images/welcometick.png"),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                "Welcome to Profertility",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Color(0xffffffff),
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "Lorem Ipsum is simply dummy text of\nthe printing and typesetting industry.",
+                style: TextStyle(color: Color(0xffffffff)),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

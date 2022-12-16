@@ -3,7 +3,10 @@ import 'package:gap/gap.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profertility/screens/doctor_detail_screen.dart';
+import 'package:profertility/screens/filter_screen.dart';
 import 'package:profertility/screens/widgets/my_appbar.dart';
+
+import 'popular_products_screen.dart';
 
 class NearbyDoctorScreen extends StatelessWidget {
   const NearbyDoctorScreen({super.key});
@@ -17,7 +20,25 @@ class NearbyDoctorScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  backgroundColor: Colors.white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(24.0),
+                    ),
+                  ),
+                  context: context,
+                  builder: (context) {
+                    return const FilterBottomSheet(
+                      filters: ["Sort"],
+                      childrens: [
+                        FilterScreen(),
+                      ],
+                    );
+                  },
+                );
+              },
               child: Row(
                 children: [
                   const Text(

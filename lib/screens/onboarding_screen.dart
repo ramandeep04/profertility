@@ -56,35 +56,68 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    InkWell(
-                      onTap: () {
-                        if (currentIndex >= 2) {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(235, 250, 251, 1),
+                        borderRadius: BorderRadius.circular(70),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (currentIndex > 0)
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    _pageController.previousPage(
+                                      duration:
+                                          const Duration(milliseconds: 200),
+                                      curve: Curves.easeInOut,
+                                    );
+                                  },
+                                  child: Image.asset(
+                                    "assets/images/back_onboarding.png",
+                                    width: 55,
+                                    height: 55,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const Gap(80)
+                              ],
                             ),
-                          );
-                        } else {
-                          _pageController.nextPage(
-                              duration: const Duration(milliseconds: 200),
-                              curve: Curves.easeInOut);
-                        }
-                      },
-                      child: Image.asset(
-                        "assets/images/arrow.png",
-                        width: 55,
-                        height: 55,
-                        fit: BoxFit.cover,
+                          InkWell(
+                            onTap: () {
+                              if (currentIndex >= 2) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignupScreen(),
+                                  ),
+                                );
+                              } else {
+                                _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 200),
+                                    curve: Curves.easeInOut);
+                              }
+                            },
+                            child: Image.asset(
+                              "assets/images/arrow.png",
+                              width: 55,
+                              height: 55,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const Gap(8),
                     TextButton(
                       onPressed: () {
-                         Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ),
-                          );
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const SignupScreen(),
+                          ),
+                        );
                       },
                       child: Text(
                         "Skip",

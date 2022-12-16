@@ -380,7 +380,8 @@ class TestDetailScreen extends StatelessWidget {
                       ),
                     );
                   },
-                )
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ],
